@@ -5,6 +5,7 @@ import { masterFirebaseConfig } from './api-keys';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -29,7 +30,8 @@ export const firebaseConfig = {
     routing,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    HttpModule
+    HttpModule,
+    BrowserAnimationsModule
   ],
   providers: [DatamuseService],
   bootstrap: [AppComponent]

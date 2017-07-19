@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  &:after, &:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+* {
+  font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oxygen', sans-serif;
+  letter-spacing: 18px;
+}
