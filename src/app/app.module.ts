@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { DatamuseService } from './services/datamuse.service';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -28,7 +29,7 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     HttpModule
   ],
-  providers: [],
+  providers: [DatamuseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
