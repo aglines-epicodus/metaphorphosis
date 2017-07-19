@@ -1,0 +1,92 @@
+#text {
+  font-size: 60px;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 60px;
+  margin-left: 32px;
+  margin-bottom: 60px;
+  white-space: nowrap;
+  position: relative;
+}
+
+.letter {
+  position: relative;
+  margin-left: 10px;
+  opacity: 0;
+}
+
+.animate-top {
+  animation: slide-letter-in-from-top 1.5s ease-in-out forwards;
+}
+
+.animate-bottom {
+  animation: slide-letter-in-from-bottom 1.5s ease-in-out forwards;
+}
+
+.animate-left {
+  animation: slide-letter-in-from-left 1.5s ease-in-out forwards;
+}
+
+.animate-right {
+  animation: slide-letter-in-from-right 1.5s ease-in-out forwards;
+}
+
+@keyframes slide-letter-in-from-top {
+  0% {
+    top: -1000px;
+    opacity: 0;
+  }
+  90% {
+    top: 40px;
+    opacity: .3;
+  }
+  100% {
+    top: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes slide-letter-in-from-bottom {
+  0% {
+    bottom: -1000px;
+    opacity: 0;
+  }
+  90% {
+    bottom: 10px;
+    opacity: .3;
+  }
+  100% {
+    bottom: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes slide-letter-in-from-left {
+  0% {
+    left: -1000px;
+    opacity: 0;
+  }
+  90% {
+    left: 20px;
+    opacity: .3;
+  }
+  100% {
+    left: 0px;
+    opacity: 1;
+  }
+}
+
+@keyframes slide-letter-in-from-right {
+  0% {
+    right: -1000px;
+    opacity: 0;
+  }
+  90% {
+    right: 20px;
+    opacity: .3;
+  }
+  100% {
+    right: 0px;
+    opacity: 1;
+  }
+}
