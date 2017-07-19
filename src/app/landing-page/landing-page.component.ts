@@ -10,14 +10,9 @@ export class LandingPageComponent implements OnInit {
 
   constructor(public service: DatamuseService) { }
 
+
   ngOnInit() {
-    this.service.getDatamuseResponseMeansLike();
-    this.service.getDatamuseResponseRelatedTrigger();
-    this.service.getDatamuseResponseRelatedSpecific();
-    this.service.getDatamuseResponseRelatedGeneral();
-    this.service.getDatamuseResponseRelatedSyn();
-    this.service.getDatamuseResponseRelatedAnt();
-    this.service.getDatamuseResponseRelatedComprises();
+    this.service.getDatamuseResponse();
 
   }
 

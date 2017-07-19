@@ -1,54 +1,61 @@
 import { Injectable } from '@angular/core';
-// import { Datamuse } from 'datamuse';
 import { Http, Response } from '@angular/http';
-
 
 @Injectable()
 export class DatamuseService {
 
   constructor(private http: Http) { }
 
-// Lets see what we CAN get back - a quick review of Datamuse options
+  getDatamuseResponse() {
 
-getDatamuseResponseMeansLike() {
-    var result = this.http.get("http://api.datamuse.com/words?ml=politics&max=10").subscribe((result) => {
-      console.log("Means Like: ", result.json());
-    });
-  }
-getDatamuseResponseRelatedTrigger() {
-    var result = this.http.get("http://api.datamuse.com/words?rel_trg=politics&max=10").subscribe((result) => {
-      console.log("Related Trigger: ", result.json());
-    });
-  }
+    var selectedWord = "playfulness";
 
-getDatamuseResponseRelatedSpecific() {
-    var result = this.http.get("http://api.datamuse.com/words?rel_spc=politics&max=10").subscribe((result) => {
-      console.log("This is a kind of that: ", result.json());
+    var meansLike = this.http.get("http://api.datamuse.com/words?ml=" + selectedWord + "&max=10").subscribe((result) => {
+      for (var i=0; i<result.json().length; i++) {
+        console.log(selectedWord, "means like: ", result.json()[i].word);
+      }
+      // console.log("Means Like: ", result.json()[0].word);
     });
-  }
+    var relatedTrigger = this.http.get("http://api.datamuse.com/words?rel_trg=" + selectedWord + "&max=10").subscribe((result) => {
+      for (var i=0; i<result.json().length; i++) {
+        console.log("Related Trigger: ", result.json()[i].word);
+      }
+      // console.log("Related Trigger: ", result.json());
+    });
 
-getDatamuseResponseRelatedGeneral() {
-    var result = this.http.get("http://api.datamuse.com/words?rel_gen=politics&max=10").subscribe((result) => {
-      console.log("This is a general thing and here is a specific kind of this: ", result.json());
+    var relatedSpecific = this.http.get("http://api.datamuse.com/words?rel_spc=" + selectedWord + "&max=10").subscribe((result) => {
+      for (var i=0; i<result.json().length; i++) {
+        console.log("Related Trigger: ", result.json()[i].word);
+      }
+      // console.log("This is a kind of that: ", result.json());
     });
-  }
 
-getDatamuseResponseRelatedSyn() {
-    var result = this.http.get("http://api.datamuse.com/words?rel_syn=politics&max=10").subscribe((result) => {
-      console.log("synonyms: ", result.json());
+    var relatedGeneral = this.http.get("http://api.datamuse.com/words?rel_gen=" + selectedWord + "&max=10").subscribe((result) => {
+      for (var i=0; i<result.json().length; i++) {
+        console.log("More specific kind of", selectedWord,"=", result.json()[i].word);
+      }
+      // console.log("This is a general thing and here is a specific kind of this: ", result.json());
     });
-  }
+    var synonyms = this.http.get("http://api.datamuse.com/words?rel_syn=" + selectedWord + "&max=10").subscribe((result) => {
+      for (var i=0; i<result.json().length; i++) {
+        console.log("Synonym of", selectedWord,"=", result.json()[i].word);
+      }
+      // console.log("synonyms: ", result.json());
+    });
 
-getDatamuseResponseRelatedAnt() {
-    var result = this.http.get("http://api.datamuse.com/words?rel_ant=politics&max=10").subscribe((result) => {
-      console.log("opposite ", result.json());
+    var antonyms = this.http.get("http://api.datamuse.com/words?rel_ant=" + selectedWord + "&max=10").subscribe((result) => {
+      for (var i=0; i<result.json().length; i++) {
+        console.log("Opposite of", selectedWord,"=", result.json()[i].word);
+      }
+      // console.log("opposite ", result.json());
     });
-  }
-getDatamuseResponseRelatedComprises() {
-    var result = this.http.get("http://api.datamuse.com/words?rel_com=politics&max=10").subscribe((result) => {
-      console.log("related and comprises: ", result.json());
-    });
-  }
 
+    var partWhole = this.http.get("http://api.datamuse.com/words?rel_com=" + selectedWord + "&max=10").subscribe((result) => {
+      for (var i=0; i<result.json().length; i++) {
+        console.log("Related and comprises:", result.json()[i].word);
+      }
+      // console.log("related and comprises: ", result.json());
+    });
+  }
 
 }
