@@ -37,14 +37,17 @@ Metaphor:
   relatedConcept: Concept
 }
 
-Session:
-[
+SessionInstance:
   {
     a: Metaphor,
     b: Metaphor,
     selectedMetaphor: a || b
   }
-]
+
+Session:
+  {
+    sessions: SessionInstance[]
+  }
 
 HallOfFameItem:
 {
