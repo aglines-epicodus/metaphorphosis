@@ -8,6 +8,7 @@
 # dependencies
 /node_modules
 /bower_components/
+package-lock.json
 
 # API Keys
 /src/app/api-keys.ts
