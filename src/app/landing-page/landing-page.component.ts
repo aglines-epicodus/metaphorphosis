@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import { DatamuseService} from '../services/datamuse.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service: DatamuseService) { }
+
 
   ngOnInit() {
+
+
   }
 
 }
