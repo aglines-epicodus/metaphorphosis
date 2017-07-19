@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DatamuseService} from '../services/datamuse.service';
+// import { DatamuseService} from '../services/datamuse.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -12,7 +12,7 @@ export class LandingPageComponent implements OnInit {
 
 
   ngOnInit() {
-    this.service.getDatamuseResponse();
+
 
   }
 
