@@ -8,54 +8,73 @@ export class DatamuseService {
 
   getDatamuseResponse() {
 
-    var selectedWord = "playfulness";
+    var selectedWord = "game";
 
     var meansLike = this.http.get("http://api.datamuse.com/words?ml=" + selectedWord + "&max=10").subscribe((result) => {
       for (var i=0; i<result.json().length; i++) {
         console.log(selectedWord, "means like: ", result.json()[i].word);
       }
-      // console.log("Means Like: ", result.json()[0].word);
     });
     var relatedTrigger = this.http.get("http://api.datamuse.com/words?rel_trg=" + selectedWord + "&max=10").subscribe((result) => {
       for (var i=0; i<result.json().length; i++) {
         console.log("Related Trigger: ", result.json()[i].word);
       }
-      // console.log("Related Trigger: ", result.json());
     });
 
     var relatedSpecific = this.http.get("http://api.datamuse.com/words?rel_spc=" + selectedWord + "&max=10").subscribe((result) => {
       for (var i=0; i<result.json().length; i++) {
         console.log("Related Trigger: ", result.json()[i].word);
       }
-      // console.log("This is a kind of that: ", result.json());
     });
 
     var relatedGeneral = this.http.get("http://api.datamuse.com/words?rel_gen=" + selectedWord + "&max=10").subscribe((result) => {
       for (var i=0; i<result.json().length; i++) {
         console.log("More specific kind of", selectedWord,"=", result.json()[i].word);
       }
-      // console.log("This is a general thing and here is a specific kind of this: ", result.json());
+
     });
     var synonyms = this.http.get("http://api.datamuse.com/words?rel_syn=" + selectedWord + "&max=10").subscribe((result) => {
       for (var i=0; i<result.json().length; i++) {
         console.log("Synonym of", selectedWord,"=", result.json()[i].word);
       }
-      // console.log("synonyms: ", result.json());
     });
 
     var antonyms = this.http.get("http://api.datamuse.com/words?rel_ant=" + selectedWord + "&max=10").subscribe((result) => {
       for (var i=0; i<result.json().length; i++) {
         console.log("Opposite of", selectedWord,"=", result.json()[i].word);
       }
-      // console.log("opposite ", result.json());
     });
 
-    var partWhole = this.http.get("http://api.datamuse.com/words?rel_com=" + selectedWord + "&max=10").subscribe((result) => {
+    var wholeToPart = this.http.get("http://api.datamuse.com/words?rel_com=" + selectedWord + "&max=10").subscribe((result) => {
       for (var i=0; i<result.json().length; i++) {
-        console.log("Related and comprises:", result.json()[i].word);
+        console.log("Whole to part:", result.json()[i].word);
       }
-      // console.log("related and comprises: ", result.json());
     });
-  }
 
+    var partToWhole = this.http.get("http://api.datamuse.com/words?rel_par=" + selectedWord + "&max=10").subscribe((result) => {
+      for (var i=0; i<result.json().length; i++) {
+        console.log("part to whole:", result.json()[i].word);
+      }
+    });
+    var NounGivenAdj = this.http.get("http://api.datamuse.com/words?rel_jja=" + selectedWord + "&max=10").subscribe((result) => {
+      for (var i=0; i<result.json().length; i++) {
+        console.log("noun popular with this adj:", result.json()[i].word);
+      }
+    });
+    var AdjGivenNoun = this.http.get("http://api.datamuse.com/words?rel_jjb=" + selectedWord + "&max=10").subscribe((result) => {
+      for (var i=0; i<result.json().length; i++) {
+        console.log("adj popular with this noun:", result.json()[i].word);
+      }
+    });
+    var frequentFollower = this.http.get("http://api.datamuse.com/words?rel_bga=" + selectedWord + "&max=10").subscribe((result) => {
+      for (var i=0; i<result.json().length; i++) {
+        console.log("words that often follow the given word:", result.json()[i].word);
+      }
+    });
+    var frequentPreceder = this.http.get("http://api.datamuse.com/words?rel_bgb=" + selectedWord + "&max=10").subscribe((result) => {
+      for (var i=0; i<result.json().length; i++) {
+        console.log("words that often come before ", selectedWord, result.json()[i].word);
+      }
+    });
+}
 }
