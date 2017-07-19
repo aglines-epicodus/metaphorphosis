@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DatamuseService }  from '../services/datamuse.service';
+import { DatamuseService } from '../services/datamuse.service';
 
 @Component({
   selector: 'app-metaphors',
@@ -8,10 +8,19 @@ import { DatamuseService }  from '../services/datamuse.service';
 })
 export class MetaphorsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public service: DatamuseService) { }
 
   ngOnInit() {
         this.service.getDatamuseResponse();
+  }
+
+  assembleSingleMetaphor() {
+    // accept results from getDatamuseResponse
+    // construct from random seeds and planned wordLinkage
+  }
+
+  assemblePairOfMetaphors(){
+    //accept two metaphors, concat into one object
   }
 
 }
