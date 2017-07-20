@@ -9,9 +9,11 @@ declare module "*.json"
   export default value;
 }
 
+// declare var require: NodeRequire;
 declare var RiTa: any;
-declare var RiGrammar: any;
-declare var RiMarkov: any;
+// declare var RiGrammar: any;
+
+// declare module 'RiTa';
 
 // declare module "json!*"
 // { const value: any;

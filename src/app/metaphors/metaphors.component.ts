@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatamuseService } from './../services/datamuse.service';
 import { ConceptService } from "./../services/concept.service";
-
+// import * as RiTa from 'rita';
 
 import { Metaphor } from './../metaphor.model';
 
@@ -22,15 +22,15 @@ export class MetaphorsComponent implements OnInit {
                 // this.conceptService.activateConcept().subscribe(() => {
                 //   this.primaryConcept = this.conceptService.activeConcept;
                 // });
-
               }
 
   ngOnInit() {
     this.currentConcept = this.primaryConcept;
     this.makeMetaphor();
     this.makeMetaphor();
-    // let ourGrammar = new RiGrammar();
+    // let rg = new RiGrammar();
     console.log(RiTa.tokenize("The elephant took a bite!"));
+
   }
 
   makeMetaphor() {
