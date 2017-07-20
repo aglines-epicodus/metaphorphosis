@@ -13,7 +13,7 @@ export class AddConceptComponent implements OnInit {
   constructor(private conceptService: ConceptService) { }
 
   ngOnInit() {
-    this.conceptService.activateConcept();
+    this.conceptService.activateConcept(); //for testing purposes only
   }
 
   addConcept(form: NgForm) {
