@@ -91,6 +91,10 @@ export class DatamuseService {
   getNouns(noun: string) {
     return this.http.get(`http://api.datamuse.com/words?rel_trg=${noun}&max=20`);
   }
+
+  getAdjRelatedToNouns(noun: string) {
+    return this.http.get(`http://api.datamuse.com/words?rel_jjb=${noun}&max=25`);
+  }
   // getNounPhrase() {
   //   //Possibly write this later
   // }

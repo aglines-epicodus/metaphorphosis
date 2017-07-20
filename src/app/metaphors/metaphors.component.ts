@@ -10,21 +10,24 @@ import { Metaphor } from "./../metaphor.model";
   styleUrls: ['./metaphors.component.css']
 })
 export class MetaphorsComponent implements OnInit {
-  firstConcept: string = 'love';
+  firstConcept: string = 'politics';
   currentConcept: string;
   currentMetaphors: Metaphor[] = [];
+  // riTa: any;
 
-  constructor(public datamuseService: DatamuseService) { }
+  constructor(private datamuseService: DatamuseService
+              // private riGrammar: RiGrammar = new RiGrammar()
+              ) {}
 
   ngOnInit() {
-    console.log('in OnInit');
-        // this.datamuseService.getDatamuseResponse();
-        this.currentConcept = this.firstConcept;
-        this.makeMetaphor();
-        this.makeMetaphor();
+    this.currentConcept = this.firstConcept;
+    this.makeMetaphor();
+    this.makeMetaphor();
+    console.log(RiTa.VERSION);
   }
 
   makeMetaphor() {
+    // this.datamuseService.getAdjRelatedToNouns(this.currentConcept).subscribe(response => {
     this.datamuseService.getNouns(this.currentConcept).subscribe(response => {
       let nounOne: string = response.json()[Math.floor(Math.random() * response.json().length)].word;
       let nounTwo: string = response.json()[Math.floor(Math.random() * response.json().length)].word;
@@ -36,6 +39,7 @@ export class MetaphorsComponent implements OnInit {
           console.log('Oh no. While ran forever.');
         }
       }
+      // let newMetaphor = new Metaphor(`${this.firstConcept} is more ${nounOne} than ${nounTwo}`);
       let newMetaphor = new Metaphor(`${this.firstConcept} is more than ${nounOne} with ${nounTwo}`);
       newMetaphor.concepts.push(nounOne);
       newMetaphor.concepts.push(nounTwo);
