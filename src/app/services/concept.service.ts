@@ -21,23 +21,18 @@ export class ConceptService {
     this.concepts.push(concept);
   }
 
-  activateConcept() {
-    this.getConcepts().subscribe((concepts) => {
-      var done = false;
-      this.exhaustConcept(concepts[0]); // for testing only
+  activateConcept(concepts) {
 
-      concepts.forEach((concept) => {
-        this.exhaustedConcepts.forEach((exhaustedConcept) => {
-          if (!done) {
-            if (concept.concept !== exhaustedConcept.concept) {
-              this.activeConcept = concept.concept;
-              done = true;
-            }
-          }
-        })
-      });
-      return this.activeConcept;
-    });
+    if (concepts.length === this.exhaustedConcepts.length) {
+      return 'false';
+    }
+    var candidateConcept = concepts[Math.floor(Math.random() * concepts.length)].concept;
+    while(this.exhaustedConcepts.includes(candidateConcept)) {
+      candidateConcept = concepts[Math.floor(Math.random() * concepts.length)].concept;
+    }
+
+    this.activeConcept = candidateConcept;
+
     return this.activeConcept;
   }
 
