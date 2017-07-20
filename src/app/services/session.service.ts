@@ -8,7 +8,7 @@ import { SessionInstance } from '../models/session-instance.model';
 export class SessionService {
 
   sessions: FirebaseListObservable<any[]>;
-  activeSession: Session;
+  activeSession: Session = null;
 
   constructor(private database: AngularFireDatabase) {
     this.sessions = database.list('sessions');
@@ -23,7 +23,7 @@ export class SessionService {
   }
 
   createNewSession(instance: SessionInstance) {
-    if (this.activeSession !== null) {
+    if (this.activeSession === null) {
       this.activeSession = new Session([instance]);
     }
   }

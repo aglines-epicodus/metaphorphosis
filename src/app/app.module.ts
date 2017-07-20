@@ -17,6 +17,7 @@ import { DatamuseService } from './services/datamuse.service';
 import { ConceptService } from './services/concept.service';
 import { SessionService } from './services/session.service';
 import { HallOfFameService } from './services/hall-of-fame.service';
+import { ExhaustionComponent } from './exhaustion/exhaustion.component';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -30,7 +31,8 @@ export const firebaseConfig = {
     AppComponent,
     LandingPageComponent,
     MetaphorsComponent,
-    AddConceptComponent
+    AddConceptComponent,
+    ExhaustionComponent
   ],
   imports: [
     BrowserModule,
