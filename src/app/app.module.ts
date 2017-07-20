@@ -15,6 +15,7 @@ import { AddConceptComponent } from './add-concept/add-concept.component';
 
 import { DatamuseService } from './services/datamuse.service';
 import { ConceptService } from './services/concept.service';
+import { SessionService } from './services/session.service';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -40,7 +41,7 @@ export const firebaseConfig = {
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [DatamuseService, ConceptService],
+  providers: [DatamuseService, ConceptService, SessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
