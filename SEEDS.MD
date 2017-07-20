@@ -1,4 +1,6 @@
-/*Favorite seeds for various concepts*/
+
+
+Seeds that look like interesting:
 
 # animal
 * means like
@@ -35,6 +37,7 @@
 
 # Adulthood
 
+# PEace:  related trigger
 # Play?
 
 # Fun ?

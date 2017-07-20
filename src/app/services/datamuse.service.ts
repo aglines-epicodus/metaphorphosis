@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+// import * as data from '../assets/seeds.json';
 
 @Injectable()
 export class DatamuseService {
@@ -8,11 +9,20 @@ export class DatamuseService {
 
   getDatamuseResponse() {
 
-    var selectedWord = "game";
+// get random seed
+// on that seed, only check certain datamuse results
+// get slightly-non-random result
+  // we don;t want a certain percentage of the word contained in it
+// construct
+
+    var seeds = ["animal", "art", "beauty", "game", "love", "meaning", "politics", "work", "peace", "power"];
+
+    var selectedWord = "politics";
 
     var meansLike = this.http.get("http://api.datamuse.com/words?ml=" + selectedWord + "&max=10").subscribe((result) => {
       for (var i=0; i<result.json().length; i++) {
         console.log(selectedWord, "means like: ", result.json()[i].word);
+
       }
     });
     var relatedTrigger = this.http.get("http://api.datamuse.com/words?rel_trg=" + selectedWord + "&max=10").subscribe((result) => {
@@ -76,5 +86,12 @@ export class DatamuseService {
         console.log("words that often come before ", selectedWord, result.json()[i].word);
       }
     });
-}
+  }
+
+  getNouns(noun: string) {
+    return this.http.get(`http://api.datamuse.com/words?rel_trg=${noun}&max=20`);
+  }
+  // getNounPhrase() {
+  //   //Possibly write this later
+  // }
 }
