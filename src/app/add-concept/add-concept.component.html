@@ -1,0 +1,10 @@
+<h2>Add a Concept</h2>
+<form #addConceptForm="ngForm" (ngSubmit)="addConcept(addConceptForm); false">
+  <label for="concept">Concept: </label>
+  <input name="concept" type="text" ngModel>
+  <button type="submit">Submit</button>
+</form>
+
+<ul>
+  <li *ngFor="let concept of conceptService.concepts | async">{{concept.concept}}</li>
+</ul>
