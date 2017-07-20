@@ -10,6 +10,8 @@ declare module "*.json"
 }
 
 declare var RiTa: any;
+declare var RiGrammar: any;
+declare var RiMarkov: any;
 
 // declare module "json!*"
 // { const value: any;

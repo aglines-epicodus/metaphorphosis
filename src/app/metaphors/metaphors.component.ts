@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatamuseService } from './../services/datamuse.service';
 import { ConceptService } from "./../services/concept.service";
-// import { RiTa, RiGrammar } from 'rita';
-// const RiTa = require('rita');
 
 
 import { Metaphor } from './../metaphor.model';
@@ -16,12 +14,10 @@ export class MetaphorsComponent implements OnInit {
   primaryConcept: string = 'politics';
   currentConcept: string;
   currentMetaphors: Metaphor[] = [];
-  // riTa: any;
 
-  constructor(private datamuseService: DatamuseService,
-              private conceptService: ConceptService
-              // private rita: RiTa
-              // private riGrammar: RiGrammar = new RiGrammar()
+  constructor(
+    private datamuseService: DatamuseService,
+    private conceptService: ConceptService
               ) {
                 // this.conceptService.activateConcept().subscribe(() => {
                 //   this.primaryConcept = this.conceptService.activeConcept;
@@ -33,7 +29,8 @@ export class MetaphorsComponent implements OnInit {
     this.currentConcept = this.primaryConcept;
     this.makeMetaphor();
     this.makeMetaphor();
-    console.log(RiTa.VERSION);
+    // let ourGrammar = new RiGrammar();
+    console.log(RiTa.tokenize("The elephant took a bite!"));
   }
 
   makeMetaphor() {
