@@ -1,0 +1,234 @@
+@import '../assets/style_partials/main';
+
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 15px 0 5px;
+  border-bottom: 1px solid black;
+  margin-bottom: 50px;
+
+
+  #desktop-nav {
+    ul {
+      list-style-type: none;
+
+      li {
+        display: inline-block;
+      }
+
+      .spacer {
+        margin: 0 15px;
+      }
+    }
+
+
+    display: none;
+    @include tablet-bp {
+      display: block;
+    }
+  }
+
+  #mobile-nav {
+
+
+
+    @include tablet-bp {
+      display: none;
+    }
+  }
+}
+
+.content {
+  flex-grow: 2;
+  padding: 50px;
+  border-left: 1px solid black;
+  position: relative;
+
+  .horizontal-accent {
+    width: 70%;
+    border-bottom: 1px solid black;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  .vertical-accent {
+    height: 50%;
+    border-right: 1px solid black;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 50px;
+  border-top: 1px solid black;
+  padding: 10px 0 15px;
+
+  .social {
+    i {
+      width: 40px;
+      height: 40px;
+      display: inline-block;
+      margin-right: 15px;
+      background-size: 40px 40px;
+
+      &.facebook {
+        background-image: url('../assets/img/icons/facebook.png')
+      }
+      &.twitter {
+        background-image: url('../assets/img/icons/twitter.png')
+      }
+      &.github {
+        background-image: url('../assets/img/icons/github.png')
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////
+// SAVE FOR POTENTIAL FUTURE USE//////////////////////////////////
+////////////////////////////////////////////////////////////////////
+// #text {
+//   font-size: 60px;
+//   font-weight: bold;
+//   display: inline-block;
+//   margin-top: 60px;
+//   margin-left: 32px;
+//   margin-bottom: 60px;
+//   white-space: nowrap;
+//   position: relative;
+// }
+//
+// .letter {
+//   position: relative;
+//   margin-left: 10px;
+//   opacity: 0;
+// }
+//
+// .animate-top {
+//   animation: slide-letter-in-from-top 1.5s ease-in-out forwards;
+// }
+//
+// .animate-bottom {
+//   animation: slide-letter-in-from-bottom 1.5s ease-in-out forwards;
+// }
+//
+// .animate-left {
+//   animation: slide-letter-in-from-left 1.5s ease-in-out forwards;
+// }
+//
+// .animate-right {
+//   animation: slide-letter-in-from-right 1.5s ease-in-out forwards;
+// }
+//
+// @keyframes slide-letter-in-from-top {
+//   0% {
+//     top: -1000px;
+//     opacity: 0;
+//   }
+//   90% {
+//     top: 40px;
+//     opacity: .3;
+//   }
+//   100% {
+//     top: 0px;
+//     opacity: 1;
+//   }
+// }
+//
+// @keyframes slide-letter-in-from-bottom {
+//   0% {
+//     bottom: -1000px;
+//     opacity: 0;
+//   }
+//   90% {
+//     bottom: 10px;
+//     opacity: .3;
+//   }
+//   100% {
+//     bottom: 0px;
+//     opacity: 1;
+//   }
+// }
+//
+// @keyframes slide-letter-in-from-left {
+//   0% {
+//     left: -1000px;
+//     opacity: 0;
+//   }
+//   90% {
+//     left: 20px;
+//     opacity: .3;
+//   }
+//   100% {
+//     left: 0px;
+//     opacity: 1;
+//   }
+// }
+//
+// @keyframes slide-letter-in-from-right {
+//   0% {
+//     right: -1000px;
+//     opacity: 0;
+//   }
+//   90% {
+//     right: 20px;
+//     opacity: .3;
+//   }
+//   100% {
+//     right: 0px;
+//     opacity: 1;
+//   }
+// }
