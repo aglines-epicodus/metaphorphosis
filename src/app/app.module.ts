@@ -6,11 +6,17 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { DatamuseService } from './services/datamuse.service';
 import { MetaphorsComponent } from './metaphors/metaphors.component';
+import { AddConceptComponent } from './add-concept/add-concept.component';
+
+import { DatamuseService } from './services/datamuse.service';
+import { ConceptService } from './services/concept.service';
+import { SessionService } from './services/session.service';
+import { HallOfFameService } from './services/hall-of-fame.service';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -23,7 +29,8 @@ export const firebaseConfig = {
   declarations: [
     AppComponent,
     LandingPageComponent,
-    MetaphorsComponent
+    MetaphorsComponent,
+    AddConceptComponent
   ],
   imports: [
     BrowserModule,
@@ -31,9 +38,11 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     HttpModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [DatamuseService],
+  providers: [DatamuseService, ConceptService, SessionService, HallOfFameService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
