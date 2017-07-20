@@ -38,16 +38,16 @@ Metaphor:
 }
 
 SessionInstance:
-  {
-    a: Metaphor,
-    b: Metaphor,
-    selectedMetaphor: a || b
-  }
+{
+  a: Metaphor,
+  b: Metaphor,
+  selectedMetaphor: a || b
+}
 
 Session:
-  {
-    sessions: SessionInstance[]
-  }
+{
+  sessions: SessionInstance[]
+}
 
 HallOfFameItem:
 {
