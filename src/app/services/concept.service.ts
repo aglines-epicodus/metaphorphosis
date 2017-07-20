@@ -38,6 +38,7 @@ export class ConceptService {
       });
       return this.activeConcept;
     });
+    return this.activeConcept;
   }
 
   exhaustConcept(concept) {
