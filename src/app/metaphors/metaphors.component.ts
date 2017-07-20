@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DatamuseService } from '../services/datamuse.service';
-import * as RiTa from 'rita';
+import { DatamuseService } from './../services/datamuse.service';
+import { ConceptService } from "./../services/concept.service";
+// import * as RiTa from 'rita';
 
-import { Metaphor } from "./../metaphor.model";
+import { Metaphor } from './../metaphor.model';
 
 @Component({
   selector: 'app-metaphors',
@@ -10,20 +11,26 @@ import { Metaphor } from "./../metaphor.model";
   styleUrls: ['./metaphors.component.css']
 })
 export class MetaphorsComponent implements OnInit {
-  firstConcept: string = 'politics';
+  primaryConcept: string = 'politics';
   currentConcept: string;
   currentMetaphors: Metaphor[] = [];
-  // riTa: any;
 
-  constructor(private datamuseService: DatamuseService
-              // private riGrammar: RiGrammar = new RiGrammar()
-              ) {}
+  constructor(
+    private datamuseService: DatamuseService,
+    private conceptService: ConceptService
+              ) {
+                // this.conceptService.activateConcept().subscribe(() => {
+                //   this.primaryConcept = this.conceptService.activeConcept;
+                // });
+              }
 
   ngOnInit() {
-    this.currentConcept = this.firstConcept;
+    this.currentConcept = this.primaryConcept;
     this.makeMetaphor();
     this.makeMetaphor();
-    console.log(RiTa.VERSION);
+    // let rg = new RiGrammar();
+    console.log(RiTa.tokenize("The elephant took a bite!"));
+
   }
 
   makeMetaphor() {
@@ -31,20 +38,13 @@ export class MetaphorsComponent implements OnInit {
     this.datamuseService.getNouns(this.currentConcept).subscribe(response => {
       let nounOne: string = response.json()[Math.floor(Math.random() * response.json().length)].word;
       let nounTwo: string = response.json()[Math.floor(Math.random() * response.json().length)].word;
-      let loopCounter: number = 0;
-      while (nounOne === nounTwo && loopCounter < 50) {
+      while (nounOne === nounTwo) {
         nounTwo = response.json()[Math.floor(Math.random() * response.json().length)].word;
-        loopCounter ++;
-        if (loopCounter === 50) {
-          console.log('Oh no. While ran forever.');
-        }
       }
-      // let newMetaphor = new Metaphor(`${this.firstConcept} is more ${nounOne} than ${nounTwo}`);
-      let newMetaphor = new Metaphor(`${this.firstConcept} is more than ${nounOne} with ${nounTwo}`);
+      let newMetaphor = new Metaphor(`${this.primaryConcept} is more than ${nounOne} with ${nounTwo}`);
       newMetaphor.concepts.push(nounOne);
       newMetaphor.concepts.push(nounTwo);
       this.currentMetaphors.push(newMetaphor);
-      console.log(this.currentMetaphors);
     });
   }
 
