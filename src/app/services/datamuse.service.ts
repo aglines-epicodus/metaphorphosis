@@ -7,6 +7,15 @@ export class DatamuseService {
 
   constructor(private http: Http) { }
 
+
+  getNouns(noun: string) {
+    return this.http.get(`http://api.datamuse.com/words?rel_trg=${noun}&max=20`);
+  }
+
+  getAdjRelatedToNouns(noun: string) {
+    return this.http.get(`http://api.datamuse.com/words?rel_jjb=${noun}&max=25`);
+  }
+
   getDatamuseResponse() {
 
 // get random seed
@@ -86,14 +95,6 @@ export class DatamuseService {
         console.log("words that often come before ", selectedWord, result.json()[i].word);
       }
     });
-  }
-
-  getNouns(noun: string) {
-    return this.http.get(`http://api.datamuse.com/words?rel_trg=${noun}&max=20`);
-  }
-
-  getAdjRelatedToNouns(noun: string) {
-    return this.http.get(`http://api.datamuse.com/words?rel_jjb=${noun}&max=25`);
   }
   // getNounPhrase() {
   //   //Possibly write this later

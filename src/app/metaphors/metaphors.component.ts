@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { DatamuseService } from '../services/datamuse.service';
-import { ConceptService } from '../services/concept.service';
 import { HallOfFameService } from '../services/hall-of-fame.service';
 import { SessionService } from '../services/session.service';
 import { Router } from '@angular/router';
 
 import { Metaphor } from "../models/metaphor.model";
 import { SessionInstance } from '../models/session-instance.model';
+import { DatamuseService } from './../services/datamuse.service';
+import { ConceptService } from "./../services/concept.service";
 
 @Component({
   selector: 'app-metaphors',
   templateUrl: './metaphors.component.html',
   styleUrls: ['./metaphors.component.css']
 })
+
 export class MetaphorsComponent implements OnInit {
   firstConcept: string;
   currentConcept: string;
@@ -48,20 +49,13 @@ export class MetaphorsComponent implements OnInit {
     this.datamuseService.getNouns(this.currentConcept).subscribe(response => {
       let nounOne: string = response.json()[Math.floor(Math.random() * response.json().length)].word;
       let nounTwo: string = response.json()[Math.floor(Math.random() * response.json().length)].word;
-      let loopCounter: number = 0;
-      while (nounOne === nounTwo && loopCounter < 50) {
+      while (nounOne === nounTwo) {
         nounTwo = response.json()[Math.floor(Math.random() * response.json().length)].word;
-        loopCounter ++;
-        if (loopCounter === 50) {
-          console.log('Oh no. While ran forever.');
-        }
       }
-      // let newMetaphor = new Metaphor(`${this.firstConcept} is more ${nounOne} than ${nounTwo}`);
       let newMetaphor = new Metaphor(`${this.firstConcept} is more than ${nounOne} with ${nounTwo}`);
       newMetaphor.concepts.push(nounOne);
       newMetaphor.concepts.push(nounTwo);
       this.currentMetaphors.push(newMetaphor);
-      // console.log(this.currentMetaphors);
     });
   }
 

@@ -23,8 +23,6 @@ export class ConceptService {
 
   activateConcept(concepts) {
 
-    console.log(concepts);
-    console.log(this.exhaustedConcepts);
     if (concepts.length === this.exhaustedConcepts.length) {
       return 'false';
     }
@@ -36,21 +34,6 @@ export class ConceptService {
     this.activeConcept = candidateConcept;
 
     return this.activeConcept;
-
-    // if (concepts.length === this.exhaustedConcepts.length) {
-    //   return 'false';
-    // }
-    //
-    // var done = false;
-    //
-    // concepts.forEach((concept) => {
-    //   if (!this.exhaustedConcepts.includes(concept.concept) && !done) {
-    //     this.activeConcept = concept.concept;
-    //     var done = true;
-    //   }
-    // });
-    //
-    // return this.activeConcept;
   }
 
   exhaustConcept(concept) {
