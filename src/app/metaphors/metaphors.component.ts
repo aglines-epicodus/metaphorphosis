@@ -18,7 +18,7 @@ export class MetaphorsComponent implements OnInit {
   firstConcept: string;
   currentConcept: string;
   currentMetaphors: Metaphor[] = [];
-  threshold: number = 5;
+  threshold: number = 1;
   progressTowardsThreshold: number = 0;
 
   constructor(private datamuseService: DatamuseService,
@@ -60,7 +60,7 @@ export class MetaphorsComponent implements OnInit {
   }
 
   preferMetaphor(metaphor: Metaphor) {
-    var newSessionInstance = new SessionInstance(this.currentMetaphors[0], this.currentMetaphors[1], metaphor);
+    var newSessionInstance = new SessionInstance(this.currentMetaphors[0], this.currentMetaphors[1], metaphor, this.firstConcept);
     if (this.sessionService.activeSession === null) {
       this.sessionService.createNewSession(newSessionInstance);
     } else {
