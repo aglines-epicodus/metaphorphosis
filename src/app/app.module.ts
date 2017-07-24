@@ -19,6 +19,7 @@ import { SessionService } from './services/session.service';
 import { HallOfFameService } from './services/hall-of-fame.service';
 import { ExhaustionComponent } from './exhaustion/exhaustion.component';
 import { HallOfFameComponent } from './hall-of-fame/hall-of-fame.component';
+import { PopularPipe } from './pipes/popular.pipe';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -34,7 +35,8 @@ export const firebaseConfig = {
     MetaphorsComponent,
     AddConceptComponent,
     ExhaustionComponent,
-    HallOfFameComponent
+    HallOfFameComponent,
+    PopularPipe
   ],
   imports: [
     BrowserModule,

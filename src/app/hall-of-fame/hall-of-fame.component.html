@@ -1,3 +1,6 @@
 <p>
   hall-of-fame works!
 </p>
+<ul *ngIf="list">
+  <li *ngFor="let item of list | async">{{item[0].sessions[0].primaryConcept}}</li>
+</ul>

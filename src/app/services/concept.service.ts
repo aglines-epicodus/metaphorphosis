@@ -27,6 +27,7 @@ export class ConceptService {
 
     if (concepts.length === this.exhaustedConcepts.length) {
       this.hallOfFameService.addHallOfFameSession(this.sessionService.fullSession);
+      this.sessionService.fullSession = [];
       return 'false';
     }
     var candidateConcept = concepts[Math.floor(Math.random() * concepts.length)].concept;
