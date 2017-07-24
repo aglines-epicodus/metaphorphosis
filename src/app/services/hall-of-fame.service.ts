@@ -15,7 +15,7 @@ export class HallOfFameService {
     return this.hallOfFameList;
   }
 
-  addHallOfFameSession(session: Session) {
+  addHallOfFameSession(session: any) {
     this.hallOfFameList.push(session);
   }
 
