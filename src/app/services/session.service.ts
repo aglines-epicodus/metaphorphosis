@@ -10,6 +10,7 @@ export class SessionService {
   sessions: FirebaseListObservable<any[]>;
   activeSession: Session = null;
   fullSession: any[] = [];
+  //fullsession an object with a prop for winning metaphor set, and a prop with array for full history
 
   constructor(private database: AngularFireDatabase) {
     this.sessions = database.list('sessions');

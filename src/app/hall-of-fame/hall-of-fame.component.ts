@@ -18,7 +18,8 @@ export class HallOfFameComponent implements OnInit {
   }
 
   determineClicked(item) {
-    if (item.clicked) {
+    console.log();
+    if (item.sessions[item.sessions.length - 1].counter !== 0) {
       return 'clicked';
     } else {
       return 'unclicked';
@@ -26,7 +27,14 @@ export class HallOfFameComponent implements OnInit {
   }
 
   clickIcon(item) {
-    item.clicked = true;
+    if (item.clicked) {
+      item.clicked = false;
+    } else {
+      item.clicked = true;
+    }
   }
 
+  saveUpdate(item) {
+    this.hallOfFameService.saveUpdate(item);
+  }
 }

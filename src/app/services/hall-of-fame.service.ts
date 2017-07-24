@@ -22,4 +22,8 @@ export class HallOfFameService {
   getHallOfFameSessionById(id) {
     return this.database.object('halloffame/' + id);
   }
+
+  saveUpdate(item) {
+    this.getHallOfFameSessionById(item.$key).set(item);
+  }
 }
