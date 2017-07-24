@@ -17,4 +17,16 @@ export class HallOfFameComponent implements OnInit {
     this.list = this.hallOfFameService.getHallOfFameList();
   }
 
+  determineClicked(item) {
+    if (item.clicked) {
+      return 'clicked';
+    } else {
+      return 'unclicked';
+    }
+  }
+
+  clickIcon(item) {
+    item.clicked = true;
+  }
+
 }

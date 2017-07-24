@@ -1,0 +1,14 @@
+.clicked {
+  background-image: url('../../assets/img/icons/clicked-icon.png');
+}
+
+.unclicked {
+  background-image: url('../../assets/img/icons/unclicked-icon.png');
+}
+
+.clicked, .unclicked {
+  background-size: 32px 32px;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+}

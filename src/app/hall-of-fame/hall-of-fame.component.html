@@ -1,6 +1,6 @@
-<p>
-  hall-of-fame works!
-</p>
-<ul *ngIf="list">
-  <li *ngFor="let item of list | async">{{item[0].sessions[0].primaryConcept}}</li>
-</ul>
+<div *ngIf="list">
+  <div *ngFor="let item of list | async">
+    <span *ngFor="let subItem of item"><span [class]="determineClicked(subItem)" (click)="clickIcon(subItem)"></span>{{subItem.sessions[subItem.sessions.length - 1].selectedMetaphor.metaphor}}<br></span>
+
+  </div>
+</div>
