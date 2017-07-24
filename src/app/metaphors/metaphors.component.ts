@@ -18,7 +18,7 @@ export class MetaphorsComponent implements OnInit {
   firstConcept: string;
   currentConcept: string;
   currentMetaphors: Metaphor[] = [];
-  threshold: number = 5;
+  threshold: number = 1;
   progressTowardsThreshold: number = 0;
 
   constructor(private datamuseService: DatamuseService,
