@@ -11,14 +11,14 @@ import { ConceptService } from "./../services/concept.service";
 @Component({
   selector: 'app-metaphors',
   templateUrl: './metaphors.component.html',
-  styleUrls: ['./metaphors.component.css']
+  styleUrls: ['./metaphors.component.scss']
 })
 
 export class MetaphorsComponent implements OnInit {
   firstConcept: string;
   currentConcept: string;
   currentMetaphors: Metaphor[] = [];
-  threshold: number = 1;
+  threshold: number = 5;
   progressTowardsThreshold: number = 0;
 
   constructor(private datamuseService: DatamuseService,

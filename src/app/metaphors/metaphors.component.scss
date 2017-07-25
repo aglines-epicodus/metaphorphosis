@@ -1,0 +1,38 @@
+@import '../../assets/style_partials/main';
+p {
+  font-size: 24px;
+  margin-bottom: 10px;
+  position: absolute;
+  font-family: 'Oxygen';
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
+  &:first-child {
+    left: 20px;
+    top: 20%;
+
+    @include tablet-bp {
+      top: 30%;
+      font-size: 36px;
+    }
+  }
+  &:last-child {
+    left: 20px;
+    bottom: 20%;
+
+    @include tablet-bp {
+      left: auto;
+      right: 20px;
+      bottom: 30%;
+      font-size: 36px;
+    }
+  }
+}
+
+.container {
+  min-height: 100%;
+  width: 95%;
+  margin: 0 auto;
+  // position: relative;
+}

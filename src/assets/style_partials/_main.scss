@@ -1,2 +1,8 @@
 @import './vars';
 @import './mixins';
+
+app-metaphors {
+  position: relative;
+  padding: 20px;
+  min-height: 100%;
+}
