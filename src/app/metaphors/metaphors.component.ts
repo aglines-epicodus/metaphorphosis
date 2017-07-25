@@ -19,7 +19,7 @@ export class MetaphorsComponent implements OnInit {
   firstConcept: string;
   currentConcept: string;
   currentMetaphors: Metaphor[] = [];
-  threshold: number = 1;
+  threshold: number = 10;
   progressTowardsThreshold: number = 0;
 
   constructor(private datamuseService: DatamuseService,
@@ -46,27 +46,79 @@ export class MetaphorsComponent implements OnInit {
     });
   }
 
-  makeMetaphor() {
-    // this.datamuseService.getAdjRelatedToNouns(this.currentConcept).subscribe(response => {
-    this.datamuseService.getNouns(this.currentConcept).subscribe(response => {
-      let nounOne: string = response.json()[Math.floor(Math.random() * response.json().length)].word;
-      let nounTwo: string = response.json()[Math.floor(Math.random() * response.json().length)].word;
-      while (nounOne === nounTwo) {
-        nounTwo = response.json()[Math.floor(Math.random() * response.json().length)].word;
-      }
-      //returns an object with two keys, a string to be used as a template and a number of concepts necessary to fill the template:
-      let templateObj = this.madLibService.buildMadLib();
-      let newMetaphor = new Metaphor(`
-        ${this.firstConcept}
-        ${templateObj.template
-        .replace('CONCEPT2', nounOne)
-        .replace('CONCEPT3', nounTwo)}`); //if no third concept, this fails quietly and without error.
-      // let newMetaphor = new Metaphor(`${this.firstConcept} is more than ${nounOne} with ${nounTwo}`);
-      newMetaphor.concepts.push(nounOne);
-      newMetaphor.concepts.push(nounTwo);
-      this.currentMetaphors.push(newMetaphor);
-    });
-  }
+
+// ==========================================================
+// ORIGINAL makeMetaphor
+  // makeMetaphor() {
+  //   this.datamuseService.getNouns(this.currentConcept).subscribe(response => {
+  //     let nounOne: string = response.json()[Math.floor(Math.random() * response.json().length)].word;
+  //     let nounTwo: string = response.json()[Math.floor(Math.random() * response.json().length)].word;
+  //     while (nounOne === nounTwo) {
+  //       nounTwo = response.json()[Math.floor(Math.random() * response.json().length)].word;
+  //     }
+  //     //returns an object with two keys, a string to be used as a template and a number of concepts necessary to fill the template:
+  //     let templateObj = this.madLibService.buildMadLib();
+  //     let newMetaphor = new Metaphor(`
+  //       ${this.firstConcept}
+  //       ${templateObj.template
+  //       .replace('CONCEPT2', nounOne)
+  //       .replace('CONCEPT3', nounTwo)}`); //if no third concept, this fails quietly and without error.
+  //     // let newMetaphor = new Metaphor(`${this.firstConcept} is more than ${nounOne} with ${nounTwo}`);
+  //     newMetaphor.concepts.push(nounOne);
+  //     newMetaphor.concepts.push(nounTwo);
+  //     this.currentMetaphors.push(newMetaphor);
+  //   });
+  // }
+
+
+
+
+
+
+// ==========================================================
+// makeMetaphor with WordFrequency limits
+
+makeMetaphor() {
+  this.datamuseService.getNounsWithBetterFrequency(this.currentConcept).subscribe(response => {
+
+    var nounOnePrecursor = response.json()[Math.floor(Math.random() * response.json().length)];
+
+    let Freq: number = parseInt(nounOnePrecursor.tags[0].replace("f:", ""));
+
+    let nounOneFreq: string = nounOnePrecursor.tags[0];
+    console.log("nounOneFreq = ", nounOneFreq);
+
+    let newFreq: number = parseInt(nounOneFreq.replace("f:", ""));
+    console.log("newFreq = ", newFreq);
+
+    if (newFreq >= 10) {
+      nounOne = nounOnePrecursor.word;
+      // console.log("nounOne = ", nounOne);
+    };
+
+//===================================================
+
+    let nounTwo: string = response.json()[Math.floor(Math.random() * response.json().length)].word;
+
+    while (nounOne === nounTwo) {
+      nounTwo = response.json()[Math.floor(Math.random() * response.json().length)].word;
+    }
+    //returns an object with two keys, a string to be used as a template and a number of concepts necessary to fill the template:
+    let templateObj = this.madLibService.buildMadLib();
+    let newMetaphor = new Metaphor(`
+      ${this.firstConcept}
+      ${templateObj.template
+      .replace('CONCEPT2', nounOne)
+      .replace('CONCEPT3', nounTwo)}`); //if no third concept, this fails quietly and without error.
+    // let newMetaphor = new Metaphor(`${this.firstConcept} is more than ${nounOne} with ${nounTwo}`);
+    newMetaphor.concepts.push(nounOne);
+    newMetaphor.concepts.push(nounTwo);
+    this.currentMetaphors.push(newMetaphor);
+  });
+}
+
+
+
 
   preferMetaphor(metaphor: Metaphor) {
     var newSessionInstance = new SessionInstance(this.currentMetaphors[0], this.currentMetaphors[1], metaphor, this.firstConcept);
