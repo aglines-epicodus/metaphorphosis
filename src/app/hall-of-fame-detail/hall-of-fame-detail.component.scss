@@ -1,0 +1,13 @@
+.selected {
+  color: green;
+  background: #fff;
+  display: inline-block;
+}
+
+.abandoned {
+  color: red;
+}
+
+svg {
+  z-index: -1;
+}

@@ -22,6 +22,7 @@ import { DisplayListService } from './services/display-list.service';
 import { ExhaustionComponent } from './exhaustion/exhaustion.component';
 import { HallOfFameComponent } from './hall-of-fame/hall-of-fame.component';
 import { PopularPipe } from './pipes/popular.pipe';
+import { HallOfFameDetailComponent } from './hall-of-fame-detail/hall-of-fame-detail.component';
 
 
 export const firebaseConfig = {
@@ -39,7 +40,8 @@ export const firebaseConfig = {
     AddConceptComponent,
     ExhaustionComponent,
     HallOfFameComponent,
-    PopularPipe
+    PopularPipe,
+    HallOfFameDetailComponent
   ],
   imports: [
     BrowserModule,
