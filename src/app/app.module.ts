@@ -18,7 +18,11 @@ import { MadLibService } from './services/mad-lib.service';
 import { ConceptService } from './services/concept.service';
 import { SessionService } from './services/session.service';
 import { HallOfFameService } from './services/hall-of-fame.service';
+import { DisplayListService } from './services/display-list.service';
 import { ExhaustionComponent } from './exhaustion/exhaustion.component';
+import { HallOfFameComponent } from './hall-of-fame/hall-of-fame.component';
+import { PopularPipe } from './pipes/popular.pipe';
+
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -33,7 +37,9 @@ export const firebaseConfig = {
     LandingPageComponent,
     MetaphorsComponent,
     AddConceptComponent,
-    ExhaustionComponent
+    ExhaustionComponent,
+    HallOfFameComponent,
+    PopularPipe
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,7 @@ export const firebaseConfig = {
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [DatamuseService, ConceptService, SessionService, HallOfFameService, MadLibService],
+  providers: [DatamuseService, ConceptService, SessionService, HallOfFameService, DisplayListService, MadLibService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

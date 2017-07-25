@@ -1,0 +1,47 @@
+.clicked {
+  background-image: url('../../assets/img/icons/clicked.png');
+
+  &:hover {
+    background-image: url('../../assets/img/icons/unclicked.png');
+  }
+}
+
+.unclicked {
+  background-image: url('../../assets/img/icons/unclicked.png');
+
+  &:hover {
+    background-image: url('../../assets/img/icons/clicked.png');
+  }
+}
+
+.clicked, .unclicked {
+  background-size: 32px auto;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: all .3s;
+  position: relative;
+}
+
+
+
+.metaphor {
+  font-size: 20px;
+  display: block;
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+  text-transform: capitalize;
+  position: relative;
+  margin-bottom: 20px;
+
+  .counter {
+    position: absolute;
+    left: 5px;
+    top: 17px;
+    font-size: 12px;
+  }
+}
