@@ -4,6 +4,9 @@ p {
   margin-bottom: 10px;
   position: absolute;
   font-family: 'Oxygen';
+  cursor: pointer;
+  padding: 20px;
+  animation: pulsate 6s ease-in-out infinite alternate;
 
   &::first-letter {
     text-transform: capitalize;
@@ -34,5 +37,15 @@ p {
   min-height: 100%;
   width: 95%;
   margin: 0 auto;
-  // position: relative;
+}
+
+@keyframes pulsate {
+  0% {
+    font-size:36px;
+    letter-spacing: 0;
+  }
+  100% {
+    font-size: 38px;
+    // letter-spacing: .5px;
+  }
 }
