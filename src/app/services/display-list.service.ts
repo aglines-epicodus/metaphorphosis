@@ -12,7 +12,7 @@ export class DisplayListService {
     this.list = db.list('display-list');
   }
 
-  getLists() {
+  getList() {
     return this.list;
   }
 
@@ -32,6 +32,10 @@ export class DisplayListService {
       this.list.push(newObject);
     }
     // this.list.push(item);
+  }
+
+  saveUpdate(item) {
+    this.getListById(item.$key).set(item);
   }
 
 }

@@ -1,9 +1,5 @@
 <div *ngIf="list">
-  <div *ngFor="let item of list | async">
-    <span *ngFor="let subItem of item" class="metaphor">
-      <span [class]="determineClicked(subItem)" (click)="subItem.sessions[subItem.sessions.length - 1].counter = subItem.sessions[subItem.sessions.length - 1].counter + 1; saveUpdate(item); clickIcon(subItem);"></span>
-        <span class="counter">{{subItem.sessions[subItem.sessions.length - 1].counter}}</span>
-        {{subItem.sessions[subItem.sessions.length - 1].selectedMetaphor.metaphor}}
-      </span>
+  <div *ngFor="let item of list | async | popular">
+    <span class="metaphor"><span [class]="determineClicked(item)" (click)="item.counter = item.counter + 1; saveUpdate(item);"></span><span class="counter">{{item.counter}}</span>{{item.metaphor}} <span (click)="findDetail(item.refId)">&rarr;</span></span>
   </div>
 </div>

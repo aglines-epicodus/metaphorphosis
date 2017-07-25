@@ -37,6 +37,7 @@ export class MetaphorsComponent implements OnInit {
       this.firstConcept = this.conceptService.activateConcept(concepts, id);
       //check to see if we're done with the list of concepts and if we are, dump out to exhaustion page
       if (this.firstConcept === 'false') {
+        this.conceptService.exhaustedConcepts = [];
         this.router.navigate(['/exhaustion']);
       }
       this.currentConcept = this.firstConcept;

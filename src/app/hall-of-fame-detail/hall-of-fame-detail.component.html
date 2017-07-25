@@ -1,0 +1,9 @@
+<div *ngIf="dataSet">
+
+  <div *ngFor="let item of (dataSet | async)?.data">
+    <div *ngFor="let subItem of item.sessions">
+      <p>{{subItem.selectedMetaphor.metaphor}}</p>
+    </div>
+  </div>
+</div>
+<!-- {{dataSet}} -->
