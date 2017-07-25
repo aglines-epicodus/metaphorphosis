@@ -14,6 +14,7 @@ import { MetaphorsComponent } from './metaphors/metaphors.component';
 import { AddConceptComponent } from './add-concept/add-concept.component';
 
 import { DatamuseService } from './services/datamuse.service';
+import { MadLibService } from './services/mad-lib.service';
 import { ConceptService } from './services/concept.service';
 import { SessionService } from './services/session.service';
 import { HallOfFameService } from './services/hall-of-fame.service';
@@ -44,7 +45,7 @@ export const firebaseConfig = {
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [DatamuseService, ConceptService, SessionService, HallOfFameService],
+  providers: [DatamuseService, ConceptService, SessionService, HallOfFameService, MadLibService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
