@@ -57,6 +57,7 @@ export class MetaphorsComponent implements OnInit {
       //returns an object with two keys, a string to be used as a template and a number of concepts necessary to fill the template:
       let templateObj = this.madLibService.buildMadLib();
 
+      //governs rolling singular and plural forms of concepts and using correct particles with them.
       switch(Math.floor(Math.random() * 4)) {
         case 0:
           console.log('no plurals');
