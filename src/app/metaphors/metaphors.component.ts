@@ -7,6 +7,7 @@ import { Metaphor } from "../models/metaphor.model";
 import { SessionInstance } from '../models/session-instance.model';
 import { DatamuseService } from './../services/datamuse.service';
 import { ConceptService } from "./../services/concept.service";
+import { MadLibService } from "./../services/mad-lib.service";
 
 @Component({
   selector: 'app-metaphors',
@@ -25,6 +26,7 @@ export class MetaphorsComponent implements OnInit {
               private conceptService: ConceptService,
               private hofService: HallOfFameService,
               private sessionService: SessionService,
+              private madLibService: MadLibService,
               private router: Router
               ) {}
 
@@ -52,7 +54,14 @@ export class MetaphorsComponent implements OnInit {
       while (nounOne === nounTwo) {
         nounTwo = response.json()[Math.floor(Math.random() * response.json().length)].word;
       }
-      let newMetaphor = new Metaphor(`${this.firstConcept} is more than ${nounOne} with ${nounTwo}`);
+      //returns an object with two keys, a string to be used as a template and a number of concepts necessary to fill the template:
+      let templateObj = this.madLibService.buildMadLib();
+      let newMetaphor = new Metaphor(`
+        ${this.firstConcept}
+        ${templateObj.template
+        .replace('CONCEPT2', nounOne)
+        .replace('CONCEPT3', nounTwo)}`); //if no third concept, this fails quietly and without error.
+      // let newMetaphor = new Metaphor(`${this.firstConcept} is more than ${nounOne} with ${nounTwo}`);
       newMetaphor.concepts.push(nounOne);
       newMetaphor.concepts.push(nounTwo);
       this.currentMetaphors.push(newMetaphor);

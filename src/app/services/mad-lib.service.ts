@@ -4,17 +4,20 @@ import { RiTa } from 'rita';
 @Injectable()
 export class MadLibService {
   stems: any[] = [
-    {template:'CONCEPT1 is like CONCEPT2', concepts: 2},
-    {template:'CONCEPT1 is more than CONCEPT2', concepts: 2},
-    {template:'CONCEPT1 is less like CONCEPT2', concepts: 2},
-    {template:'CONCEPT1 feels like CONCEPT2', concepts: 2},
-    {template:'CONCEPT1 is CONCEPT2', concepts: 2},
-    {template:'CONCEPT1 isn\'t just CONCEPT2', concepts: 2},
-    {template:'CONCEPT1 is just CONCEPT2', concepts: 2}];
+    {template:' is like CONCEPT2', concepts: 2},
+    {template:' is more than CONCEPT2', concepts: 2},
+    {template:' is less like CONCEPT2', concepts: 2},
+    {template:' feels like CONCEPT2', concepts: 2},
+    {template:' is CONCEPT2', concepts: 2},
+    {template:' isn\'t just CONCEPT2', concepts: 2},
+    {template:' is literally CONCEPT2', concepts: 2},
+    {template:' is just CONCEPT2', concepts: 2}];
 
   affixes: any[] = [
     {template:' but with CONCEPT3', concepts: 1},
+    {template:' with CONCEPT3', concepts: 1},
     {template:' but without CONCEPT3', concepts: 1},
+    {template:' without CONCEPT3', concepts: 1},
     {template:' and CONCEPT3', concepts: 1},
     {template:' or CONCEPT3', concepts: 1},
   ];
