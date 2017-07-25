@@ -44,7 +44,6 @@ header {
 .content {
   flex-grow: 2;
   padding: 50px;
-  border-left: 1px solid black;
   position: relative;
 
   .horizontal-accent {
@@ -63,16 +62,33 @@ header {
     position: absolute;
     right: 0;
     top: 0;
-    animation: vertical-pulse 4s 1s ease-in-out infinite alternate;
+    animation: right-vertical-pulse 4s 1s ease-in-out infinite alternate;
+  }
+  .left-vertical-accent {
+    height: 100%;
+    border-right: 1px solid black;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    animation: left-vertical-pulse 4s 1s ease-in-out infinite alternate;
   }
 }
 
-@keyframes vertical-pulse {
+@keyframes right-vertical-pulse {
   0% {
     height: 50%;
   }
   100% {
     height: 55%;
+  }
+}
+@keyframes left-vertical-pulse {
+  0% {
+    height: 100%;
+  }
+  100% {
+    height: 90%;
   }
 }
 @keyframes horizontal-pulse {
@@ -121,11 +137,117 @@ footer {
 
 
 
+.burger {
+  position: relative;
+  width: 60px;
+  background: black;
+  span {
+    display: block;
+    background-color: #000;
+    height: 5px;
+    width: 55px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition: all .75s;
+    transition-delay: .5s;
+    transform: scale(0.7)
+  }
 
+  span:nth-child(1) {
+    top: 0;
+    // transform-origin: 0 2.5px;
+  }
 
+  span:nth-child(2) {
+    top: 15px;
+  }
 
+  span:nth-child(3) {
+    // transform-origin: 0 2.5px;
+    top: 30px;
+  }
 
+  .toggle-top {
+    animation: spin-right 1s forwards;
+  }
 
+  .toggle-top-reverse {
+    animation: spin-right-reverse 1s forwards;
+  }
+
+  .middle {
+    opacity: 0;
+  }
+
+  .toggle-bottom {
+    transform-origin: left center;
+    animation: spin-left 1s forwards;
+  }
+
+  .toggle-bottom-reverse {
+    transform-origin: left center;
+    animation: spin-left-reverse 1s forwards;
+  }
+
+  @keyframes spin-right{
+    0% {
+      transform: rotate(0deg);
+    }
+    20% {
+      transform: rotate(-35deg);
+    }
+    100% {
+      transform: rotate(405deg);
+      top: -2.5px;
+      left: 7.5px;
+    }
+  }
+
+  @keyframes spin-left {
+    0% {
+      transform: rotate(0deg);
+    }
+    20% {
+      transform: rotate(35deg);
+    }
+    100% {
+      transform: rotate(-405deg);
+      top: 32.5px;
+      left: 7.5px;
+    }
+  }
+
+  @keyframes spin-right-reverse {
+    0% {
+      transform: rotate(405deg);
+      top: -2.5px;
+      left: 7.5px;
+    }
+    20% {
+      transform: rotate(440deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  @keyframes spin-left-reverse {
+    0% {
+      transform: rotate(-405deg);
+      top: 32.5px;
+      left: 7.5px;
+    }
+    20% {
+      transform: rotate(-440deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+}
 
 
 
