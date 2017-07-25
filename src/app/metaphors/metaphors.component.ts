@@ -61,33 +61,6 @@ export class MetaphorsComponent implements OnInit {
     });
   }
 
-  //full session to hall of fame
-    /*
-      {
-        refId: 3298402938 (timestamp)
-        0: SessionInstance,
-        ...
-        n: SessionInstance
-      }
-    */
-    //Then sorted with pipe in the details page in whatever way necessary
-  //individual metaphor to display list
-    /*
-      {
-        metaphor: String,
-        counter: 0,
-        refId: 43902490238 (timestamp)
-      }
-    */
-    //used in hall of fame landing page using the id to find the appropriate db item
-  //individual chunk of session to sessions
-    /*
-      {
-        refId: 543242390842 (timestamp)
-        sessions: SessionInstance[]
-      }
-    */
-
   preferMetaphor(metaphor: Metaphor) {
     //to be used as reference id in database
     var id = Date.now();
