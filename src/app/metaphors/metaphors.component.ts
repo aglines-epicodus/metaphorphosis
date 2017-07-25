@@ -49,13 +49,38 @@ export class MetaphorsComponent implements OnInit {
   makeMetaphor() {
     // this.datamuseService.getAdjRelatedToNouns(this.currentConcept).subscribe(response => {
     this.datamuseService.getNouns(this.currentConcept).subscribe(response => {
-      let nounOne: string = response.json()[Math.floor(Math.random() * response.json().length)].word;
-      let nounTwo: string = response.json()[Math.floor(Math.random() * response.json().length)].word;
+      let nounOne: string = RiTa.singularize(response.json()[Math.floor(Math.random() * response.json().length)].word);
+      let nounTwo: string = RiTa.singularize(response.json()[Math.floor(Math.random() * response.json().length)].word);
       while (nounOne === nounTwo) {
         nounTwo = response.json()[Math.floor(Math.random() * response.json().length)].word;
       }
       //returns an object with two keys, a string to be used as a template and a number of concepts necessary to fill the template:
       let templateObj = this.madLibService.buildMadLib();
+
+      switch(Math.floor(Math.random() * 4)) {
+        case 0:
+          console.log('no plurals');
+          nounOne = `a ${nounOne}`;
+          nounTwo = `a ${nounTwo}`;
+        break;
+        case 1:
+          console.log('first noun plural');
+          nounOne = `${RiTa.pluralize(nounOne)}`;
+          nounTwo = `a ${nounTwo}`;
+        break;
+        case 2:
+          console.log('second noun plural');
+          nounOne = `a ${nounOne}`;
+          nounTwo = `${RiTa.pluralize(nounTwo)}`;
+        break;
+        case 3:
+          console.log('both nouns plural');
+          nounOne = `${RiTa.pluralize(nounOne)}`;
+          nounTwo = `${RiTa.pluralize(nounTwo)}`;
+        break;
+        default:
+        console.log('Whoops.')
+      }
       let newMetaphor = new Metaphor(`
         ${this.firstConcept}
         ${templateObj.template
