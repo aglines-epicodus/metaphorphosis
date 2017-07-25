@@ -16,9 +16,13 @@ export class HallOfFameService {
     return this.hallOfFameList;
   }
 
-  addHallOfFameSession(session: any) {
-    this.displayListService.addNewList(session); // WE NEED TO PASS A KEY IN SOMEWHERE PLEASE THANKS YOU'RE THE BEST BRIAN AND JARED, GODSPEED WHEN YOU TRY AND TACKLE THIS MAMOJAMA
-    this.hallOfFameList.push(session);
+  addHallOfFameSession(session: any, id: number) {
+    this.displayListService.addNewList(session, id); // WE NEED TO PASS A KEY IN SOMEWHERE PLEASE THANKS YOU'RE THE BEST BRIAN AND JARED, GODSPEED WHEN YOU TRY AND TACKLE THIS MAMOJAMA
+    var newObj = {
+      data: session,
+      refId: id
+    }
+    this.hallOfFameList.push(newObj);
   }
 
   getHallOfFameSessionById(id) {

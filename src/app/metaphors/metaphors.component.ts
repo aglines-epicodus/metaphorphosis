@@ -29,12 +29,13 @@ export class MetaphorsComponent implements OnInit {
               ) {}
 
   ngOnInit() {
-    this.start();
+    this.start(0);
   }
 
-  start() {
+  start(id) {
     this.conceptService.getConcepts().subscribe((concepts) => {
-      this.firstConcept = this.conceptService.activateConcept(concepts);
+      this.firstConcept = this.conceptService.activateConcept(concepts, id);
+      //check to see if we're done with the list of concepts and if we are, dump out to exhaustion page
       if (this.firstConcept === 'false') {
         this.router.navigate(['/exhaustion']);
       }
@@ -59,28 +60,73 @@ export class MetaphorsComponent implements OnInit {
     });
   }
 
+  //full session to hall of fame
+    /*
+      {
+        refId: 3298402938 (timestamp)
+        0: SessionInstance,
+        ...
+        n: SessionInstance
+      }
+    */
+    //Then sorted with pipe in the details page in whatever way necessary
+  //individual metaphor to display list
+    /*
+      {
+        metaphor: String,
+        counter: 0,
+        refId: 43902490238 (timestamp)
+      }
+    */
+    //used in hall of fame landing page using the id to find the appropriate db item
+  //individual chunk of session to sessions
+    /*
+      {
+        refId: 543242390842 (timestamp)
+        sessions: SessionInstance[]
+      }
+    */
+
   preferMetaphor(metaphor: Metaphor) {
-    var newSessionInstance = new SessionInstance(this.currentMetaphors[0], this.currentMetaphors[1], metaphor, this.firstConcept);
+    //to be used as reference id in database
+    var id = Date.now();
+
+    //create new session instance
+    var newSessionInstance = new SessionInstance(this.currentMetaphors[0], this.currentMetaphors[1], metaphor, this.firstConcept, id);
+
+    //check to see if there is an active session
     if (this.sessionService.activeSession === null) {
+      //if there isn't one, create one in the session service
       this.sessionService.createNewSession(newSessionInstance);
     } else {
+      //if there is one push it into full session array
       this.sessionService.addSessionInstanceToSession(newSessionInstance);
     }
 
-    this.progressTowardsThreshold += 1; // check if the same metaphor was clicked before incrementing
+    //increment the progress toward the threshold
+    this.progressTowardsThreshold += 1;
+    //as long as the activeSession has more than 1 item in it
     if (this.sessionService.activeSession.sessions.length > 1) {
+      //check to see if the two things are the same preferred metaphor
       if (metaphor.metaphor !== this.sessionService.activeSession.sessions[this.sessionService.activeSession.sessions.length - 2].selectedMetaphor.metaphor) {
+        //if they are reset the progress towards threshold
         this.progressTowardsThreshold = 0;
       }
     }
 
+    //if the threshold has been reached
     if (this.progressTowardsThreshold === this.threshold) {
+      //reset the progress in prep for the next concept
       this.progressTowardsThreshold = 0;
-      this.sessionService.commitSession();
+      //send an action to the session service to commit the session to the database and prep for the next round
+      this.sessionService.commitSession(id);
+      //update the concept service to know that it has been exhausted in this session and be ready to present the next one
       this.conceptService.exhaustConcept(this.conceptService.activeConcept);
+      //reset the state of the current metaphors to start over
       this.currentMetaphors = [];
 
-      this.start();
+      //start over with a new concept
+      this.start(id);
       return;
     }
 

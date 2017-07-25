@@ -23,10 +23,10 @@ export class ConceptService {
     this.concepts.push(concept);
   }
 
-  activateConcept(concepts) {
+  activateConcept(concepts, id) {
 
     if (concepts.length === this.exhaustedConcepts.length) {
-      this.hallOfFameService.addHallOfFameSession(this.sessionService.fullSession);
+      this.hallOfFameService.addHallOfFameSession(this.sessionService.fullSession, id);
       this.sessionService.fullSession = [];
       return 'false';
     }
