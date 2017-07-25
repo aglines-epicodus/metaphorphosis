@@ -1,13 +1,24 @@
 .selected {
-  color: green;
   background: #fff;
   display: inline-block;
+  padding: 10px;
+  border: 1px solid black;
 }
 
-.abandoned {
-  color: red;
+.selected, .abandoned {
+  font-size: 20px;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
 }
 
 svg {
   z-index: -1;
+}
+
+.item-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
 }
