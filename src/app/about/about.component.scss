@@ -1,8 +1,15 @@
 h2 {
   margin-bottom: 50px;
+  // text-align: center;
 
   &.about-us {
     margin-top: 80px;
+  }
+}
+
+.about {
+  p {
+    margin-bottom: 10px;
   }
 }
 
@@ -23,9 +30,14 @@ h2 {
     float: left;
     background: black;
     margin-right: 20px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
-  &:nth-of-type(even){
+  &:nth-of-type(2n+1){
     text-align: right;
 
     .img {
