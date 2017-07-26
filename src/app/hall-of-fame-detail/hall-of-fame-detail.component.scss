@@ -1,0 +1,28 @@
+.selected {
+  background: #fff;
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.selected, .abandoned {
+  font-size: 20px;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
+}
+
+.abandoned {
+  color: #999;
+}
+
+svg {
+  z-index: -1;
+}
+
+.item-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HallOfFameService } from '../services/hall-of-fame.service';
+import { DisplayListService } from '../services/display-list.service';
 
 @Component({
   selector: 'app-hall-of-fame',
@@ -9,17 +10,16 @@ import { HallOfFameService } from '../services/hall-of-fame.service';
 export class HallOfFameComponent implements OnInit {
   list: any;
 
-  constructor(private hallOfFameService: HallOfFameService) {
+  constructor(private hallOfFameService: HallOfFameService, private displayListService: DisplayListService) {
 
   }
 
   ngOnInit() {
-    this.list = this.hallOfFameService.getHallOfFameList();
+    this.list = this.displayListService.getList();
   }
 
   determineClicked(item) {
-    console.log();
-    if (item.sessions[item.sessions.length - 1].counter !== 0) {
+    if (item.counter !== 0) {
       return 'clicked';
     } else {
       return 'unclicked';
@@ -35,6 +35,10 @@ export class HallOfFameComponent implements OnInit {
   }
 
   saveUpdate(item) {
-    this.hallOfFameService.saveUpdate(item);
+    this.displayListService.saveUpdate(item);
+  }
+
+  findDetail(refId) {
+    this.hallOfFameService.findDetail(refId);
   }
 }

@@ -26,7 +26,13 @@
   position: relative;
 }
 
+h2 {
+  margin-bottom: 50px;
+}
 
+.metaphor-title {
+  cursor: pointer;
+}
 
 .metaphor {
   font-size: 20px;
@@ -40,7 +46,7 @@
 
   .counter {
     position: absolute;
-    left: 5px;
+    left: 8px;
     top: 17px;
     font-size: 12px;
   }

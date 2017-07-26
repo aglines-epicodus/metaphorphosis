@@ -12,7 +12,7 @@ export class DisplayListService {
     this.list = db.list('display-list');
   }
 
-  getLists() {
+  getList() {
     return this.list;
   }
 
@@ -20,17 +20,22 @@ export class DisplayListService {
     return this.db.object('display-list/' + id);
   }
 
-  addNewList(sessions) {
+  addNewList(sessions, id) {
     var metaphor:string;
     for (var i = 0; i < sessions.length; i++) {
       metaphor = sessions[i].sessions[sessions[i].sessions.length - 1].selectedMetaphor.metaphor;
       var newObject = {
         metaphor: metaphor,
-        counter: 0
+        counter: 0,
+        refId: id
       };
       this.list.push(newObject);
     }
     // this.list.push(item);
+  }
+
+  saveUpdate(item) {
+    this.getListById(item.$key).set(item);
   }
 
 }

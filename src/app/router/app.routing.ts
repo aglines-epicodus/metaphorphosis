@@ -4,6 +4,9 @@ import { LandingPageComponent } from '../landing-page/landing-page.component';
 import { AddConceptComponent } from '../add-concept/add-concept.component';
 import { ExhaustionComponent } from '../exhaustion/exhaustion.component';
 import { HallOfFameComponent } from '../hall-of-fame/hall-of-fame.component';
+import { HallOfFameDetailComponent } from '../hall-of-fame-detail/hall-of-fame-detail.component';
+import { AboutComponent } from '../about/about.component';
+import { MetaphorsComponent } from '../metaphors/metaphors.component';
 
 const appRoutes: Routes = [
   {
@@ -21,6 +24,18 @@ const appRoutes: Routes = [
   {
     path: 'halloffame',
     component: HallOfFameComponent
+  },
+  {
+    path: 'viewdetail/:key',
+    component: HallOfFameDetailComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+    path: 'metaphors',
+    component: MetaphorsComponent
   }
 ];
 

@@ -1,0 +1,64 @@
+@import '../../assets/style_partials/main';
+p {
+  font-size: 24px;
+  margin-bottom: 10px;
+  position: absolute;
+  font-family: 'Oxygen';
+  cursor: pointer;
+  padding: 20px;
+  animation: pulsate 6s ease-in-out infinite alternate;
+
+  &::first-letter {
+    text-transform: capitalize;
+  }
+  &:first-child {
+    left: 20px;
+    top: 20%;
+
+    @include tablet-bp {
+      top: 30%;
+      font-size: 36px;
+    }
+  }
+  &:last-child {
+    left: 20px;
+    bottom: 20%;
+
+    @include tablet-bp {
+      left: auto;
+      right: 20px;
+      bottom: 30%;
+      font-size: 36px;
+    }
+  }
+}
+
+.container {
+  width: 95%;
+  margin: 0 auto;
+}
+
+@keyframes pulsate {
+  0% {
+    font-size:36px;
+    letter-spacing: 0;
+  }
+  100% {
+    font-size: 38px;
+  }
+}
+
+.fade-in {
+  animation: fade-in .5s linear forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    letter-spacing: 5px;
+    opacity: 0;
+  }
+  100% {
+    letter-spacing: 0;
+    opacity: 1;
+  }
+}

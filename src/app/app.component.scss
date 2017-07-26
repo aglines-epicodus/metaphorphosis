@@ -1,12 +1,10 @@
 @import '../assets/style_partials/main';
 
-
-
 header {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 15px 0 5px;
+  padding: 45px 0 5px;
   border-bottom: 1px solid black;
   margin-bottom: 50px;
   height: 50px;
@@ -32,11 +30,78 @@ header {
   }
 
   #mobile-nav {
+    .burger {
+      width: 45px;
+      height: 40px;
+      border: 1px solid black;
+      position: relative;
+      cursor: pointer;
+      // z-index: 20;
 
+      span {
+        display: block;
+        position: absolute;
+        height: 2px;
+        width: 38px;
+        left: 3.5px;
+        background: black;
 
+        &.top {
+          top: 9px;
+        }
+        &.middle {
+          top: 19px;
+        }
+        &.bottom {
+          top: 29px;
+        }
+      }
+    }
 
     @include tablet-bp {
       display: none;
+    }
+
+    ul {
+      height: 100vh;
+      width: 200px;
+      position: fixed;
+      top: 0;
+      right: -200px;
+      background: #fff;
+      z-index: 2;
+      list-style-type: none;
+      padding: 15px;
+      border-left: 2px solid black;
+
+      .close-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .mobile-nav-content {
+        margin-top: 10%;
+        height: 90%;
+
+        li {
+          border-bottom: 1px solid black;
+          margin-bottom: 20px;
+          padding: 15px;
+
+          a:hover {
+            font-size: 20px !important;
+            letter-spacing: .5px !important;
+          }
+        }
+        .mobile-copyright {
+          position: absolute;
+          left: 0;
+          bottom: 30px;
+        }
+      }
     }
   }
 }
@@ -44,7 +109,6 @@ header {
 .content {
   flex-grow: 2;
   padding: 50px;
-  border-left: 1px solid black;
   position: relative;
 
   .horizontal-accent {
@@ -54,6 +118,7 @@ header {
     position: absolute;
     right: 0;
     bottom: 0;
+    animation: horizontal-pulse 4s 1s ease-in-out infinite alternate;
   }
   .vertical-accent {
     height: 50%;
@@ -62,6 +127,41 @@ header {
     position: absolute;
     right: 0;
     top: 0;
+    animation: right-vertical-pulse 4s 1s ease-in-out infinite alternate;
+  }
+  .left-vertical-accent {
+    height: 100%;
+    border-right: 1px solid black;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    animation: left-vertical-pulse 4s 1s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes right-vertical-pulse {
+  0% {
+    height: 50%;
+  }
+  100% {
+    height: 55%;
+  }
+}
+@keyframes left-vertical-pulse {
+  0% {
+    height: 100%;
+  }
+  100% {
+    height: 90%;
+  }
+}
+@keyframes horizontal-pulse {
+  0% {
+    width: 70%;
+  }
+  100% {
+    width: 67%;
   }
 }
 
@@ -72,6 +172,7 @@ footer {
   margin-top: 50px;
   border-top: 1px solid black;
   padding: 10px 0 15px;
+  display: none;
 
   .social {
     i {
@@ -92,50 +193,11 @@ footer {
       }
     }
   }
+
+  @include tablet-bp {
+    display: flex;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ////////////////////////////////////////////////////////////////////
 // SAVE FOR POTENTIAL FUTURE USE//////////////////////////////////

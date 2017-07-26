@@ -1,8 +1,7 @@
 import { Metaphor } from './metaphor.model';
 
 export class SessionInstance {
-  counter = 0;
-  constructor (public a: any, public b: any, public selectedMetaphor: any, public primaryConcept: any) {
+  counter = 0;  //don't think this is needed
+  constructor (public a: Metaphor, public b: Metaphor, public selectedMetaphor: Metaphor, public primaryConcept: string, public refId: number) {
   }
-
 }

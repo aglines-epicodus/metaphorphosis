@@ -36,8 +36,12 @@ export class SessionService {
     }
   }
 
-  commitSession() {
-    this.sessions.push(this.activeSession);
+  commitSession(id) {
+    var newObj = {
+      sessions: this.activeSession,
+      refId: id
+    };
+    this.sessions.push(newObj);
     this.fullSession.push(this.activeSession);
     this.activeSession = null;
   }
