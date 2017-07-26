@@ -1,0 +1,43 @@
+h2 {
+  margin-bottom: 50px;
+
+  &.about-us {
+    margin-top: 80px;
+  }
+}
+
+.card {
+  width: 100%;
+  min-height: 100px;
+  margin: 0 auto 60px;
+
+  &:after {
+    display: table;
+    content: '';
+    clear: both;
+  }
+
+  .img {
+    width: 100px;
+    height: 100px;
+    float: left;
+    background: black;
+    margin-right: 20px;
+  }
+
+  &:nth-of-type(even){
+    text-align: right;
+
+    .img {
+      float: right;
+      margin-right: 0;
+      margin-left: 20px;
+    }
+  }
+  .bio {
+    h3 {
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+  }
+}
