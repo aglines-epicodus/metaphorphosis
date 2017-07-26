@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HallOfFameService } from '../services/hall-of-fame.service';
 import { SessionService } from '../services/session.service';
 import { Router } from '@angular/router';
+import * as Articles from 'articles';
 
 import { Metaphor } from "../models/metaphor.model";
 import { SessionInstance } from '../models/session-instance.model';
@@ -57,6 +58,7 @@ export class MetaphorsComponent implements OnInit {
       //returns an object with two keys, a string to be used as a template and a number of concepts necessary to fill the template:
       let templateObj = this.madLibService.buildMadLib();
 
+      console.log(Articles.articlize('unanticipated result'));
       //governs rolling singular and plural forms of concepts and using correct particles with them.
       switch(Math.floor(Math.random() * 4)) {
         case 0:
