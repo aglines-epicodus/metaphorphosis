@@ -30,11 +30,78 @@ header {
   }
 
   #mobile-nav {
+    .burger {
+      width: 45px;
+      height: 40px;
+      border: 1px solid black;
+      position: relative;
+      cursor: pointer;
+      // z-index: 20;
 
+      span {
+        display: block;
+        position: absolute;
+        height: 2px;
+        width: 38px;
+        left: 3.5px;
+        background: black;
 
+        &.top {
+          top: 9px;
+        }
+        &.middle {
+          top: 19px;
+        }
+        &.bottom {
+          top: 29px;
+        }
+      }
+    }
 
     @include tablet-bp {
       display: none;
+    }
+
+    ul {
+      height: 100vh;
+      width: 200px;
+      position: fixed;
+      top: 0;
+      right: -200px;
+      background: #fff;
+      z-index: 2;
+      list-style-type: none;
+      padding: 15px;
+      border-left: 2px solid black;
+
+      .close-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .mobile-nav-content {
+        margin-top: 10%;
+        height: 90%;
+
+        li {
+          border-bottom: 1px solid black;
+          margin-bottom: 20px;
+          padding: 15px;
+
+          a:hover {
+            font-size: 20px !important;
+            letter-spacing: .5px !important;
+          }
+        }
+        .mobile-copyright {
+          position: absolute;
+          left: 0;
+          bottom: 30px;
+        }
+      }
     }
   }
 }
@@ -105,6 +172,7 @@ footer {
   margin-top: 50px;
   border-top: 1px solid black;
   padding: 10px 0 15px;
+  display: none;
 
   .social {
     i {
@@ -125,156 +193,11 @@ footer {
       }
     }
   }
+
+  @include tablet-bp {
+    display: flex;
+  }
 }
-
-
-
-
-
-
-
-
-
-.burger {
-  position: relative;
-  width: 60px;
-  background: black;
-  span {
-    display: block;
-    background-color: #000;
-    height: 5px;
-    width: 55px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 1;
-    transition: all .75s;
-    transition-delay: .5s;
-    transform: scale(0.7)
-  }
-
-  span:nth-child(1) {
-    top: 0;
-    // transform-origin: 0 2.5px;
-  }
-
-  span:nth-child(2) {
-    top: 15px;
-  }
-
-  span:nth-child(3) {
-    // transform-origin: 0 2.5px;
-    top: 30px;
-  }
-
-  .toggle-top {
-    animation: spin-right 1s forwards;
-  }
-
-  .toggle-top-reverse {
-    animation: spin-right-reverse 1s forwards;
-  }
-
-  .middle {
-    opacity: 0;
-  }
-
-  .toggle-bottom {
-    transform-origin: left center;
-    animation: spin-left 1s forwards;
-  }
-
-  .toggle-bottom-reverse {
-    transform-origin: left center;
-    animation: spin-left-reverse 1s forwards;
-  }
-
-  @keyframes spin-right{
-    0% {
-      transform: rotate(0deg);
-    }
-    20% {
-      transform: rotate(-35deg);
-    }
-    100% {
-      transform: rotate(405deg);
-      top: -2.5px;
-      left: 7.5px;
-    }
-  }
-
-  @keyframes spin-left {
-    0% {
-      transform: rotate(0deg);
-    }
-    20% {
-      transform: rotate(35deg);
-    }
-    100% {
-      transform: rotate(-405deg);
-      top: 32.5px;
-      left: 7.5px;
-    }
-  }
-
-  @keyframes spin-right-reverse {
-    0% {
-      transform: rotate(405deg);
-      top: -2.5px;
-      left: 7.5px;
-    }
-    20% {
-      transform: rotate(440deg);
-    }
-    100% {
-      transform: rotate(0deg);
-    }
-  }
-
-  @keyframes spin-left-reverse {
-    0% {
-      transform: rotate(-405deg);
-      top: 32.5px;
-      left: 7.5px;
-    }
-    20% {
-      transform: rotate(-440deg);
-    }
-    100% {
-      transform: rotate(0deg);
-    }
-  }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ////////////////////////////////////////////////////////////////////
 // SAVE FOR POTENTIAL FUTURE USE//////////////////////////////////
