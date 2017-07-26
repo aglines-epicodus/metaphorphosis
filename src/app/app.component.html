@@ -3,6 +3,8 @@
     <a routerLink=""><h1 id="text" class="title">Metaphorphosis</h1></a>
     <nav id="desktop-nav">
       <ul>
+        <li><a routerLink="/metaphors">Metaphors</a></li>
+        <li class="spacer">//</li>
         <li><a routerLink="/halloffame">Hall Of Fame</a></li>
         <li class="spacer">//</li>
         <li><a routerLink="/about">About</a></li>
@@ -17,6 +19,7 @@
       <ul [@slide-mobile]="state">
         <span class="close-button" (click)="animateMe()">X</span>
         <div class="mobile-nav-content">
+          <li><a routerLink="/metaphors">Metaphors</a></li>
           <li><a routerLink="/halloffame">Hall Of Fame</a></li>
           <li><a routerLink="/about">About</a></li>
           <li><a routerLink="/about">Facebook</a></li>
