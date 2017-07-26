@@ -6,17 +6,14 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    trigger('slide-top', [
+    trigger('slide-mobile', [
       state('start', style({
-        top: '-1000px',
-      })),
-      state('mid', style({
-        top: '40px',
+        right: '-200px',
       })),
       state('finish', style({
-        top: '0px',
+        right: '0px',
       })),
-      transition('start => finish', animate('1000ms ease-out'))
+      transition('start <=> finish', animate('500ms ease-in-out'))
     ])
   ]
 })
@@ -25,9 +22,34 @@ export class AppComponent implements OnInit {
   state: string = 'start';
 
   animateMe() {
-    this.state = (this.state === 'finish' ? 'start' : 'finish');
-    console.log(this.state);
+    if (this.state === "start") {
+      this.state = 'finish';
+    } else {
+      this.state = 'start';
+    }
   }
+
+  // toggleMobile() {
+  //   console.log(this.mobileShown);
+  //   if (this.mobileShown === 'true') {
+  //     this.mobileShown = 'false';
+  //   } else if (this.mobileShown === 'false' || this.mobileShown === 'neither'){
+  //     this.mobileShown = 'true';
+  //   } else {
+  //     this.mobileShown = 'neither';
+  //   }
+  // }
+  //
+  // checkMobileVisibility() {
+  //   if (this.mobileShown === 'true') {
+  //     return 'slide-mobile-in';
+  //   } else if (this.mobileShown === 'false'){
+  //     return 'slide-mobile-out'
+  //   } else {
+  //     return '';
+  //   }
+  //
+  // }
 
   ngOnInit() {
 

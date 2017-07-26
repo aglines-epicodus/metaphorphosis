@@ -9,13 +9,22 @@
       </ul>
     </nav>
     <nav id="mobile-nav">
-      <!-- <div class="burger">
-        <span></span><span></span><span></span> -->
-        <ul>
+      <div class="burger" (click)="animateMe()">
+        <span class="top"></span>
+        <span class="middle"></span>
+        <span class="bottom"></span>
+      </div>
+      <ul [@slide-mobile]="state">
+        <span class="close-button" (click)="animateMe()">X</span>
+        <div class="mobile-nav-content">
           <li><a routerLink="/halloffame">Hall Of Fame</a></li>
           <li><a routerLink="/about">About</a></li>
-        </ul>
-      <!-- </div> -->
+          <li><a routerLink="/about">Facebook</a></li>
+          <li><a routerLink="/about">Twitter</a></li>
+          <li><a routerLink="/about">Github</a></li>
+        </div>
+        <p class="mobile-copyright">&copy; 2017, Charles Emrich, Jared Eiseman, Andrew Glines, Brian Rush</p>
+      </ul>
     </nav>
   </header>
 
