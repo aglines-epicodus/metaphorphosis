@@ -23,6 +23,7 @@ import { trigger, state, style, transition, animate, keyframes } from '@angular/
 export class AppComponent implements OnInit {
   title = 'Metaphorphosis';
   state: string = 'start';
+
   animateMe() {
     this.state = (this.state === 'finish' ? 'start' : 'finish');
     console.log(this.state);
