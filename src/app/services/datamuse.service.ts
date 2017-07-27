@@ -9,7 +9,12 @@ export class DatamuseService {
 
 
   getNouns(noun: string) {
-    return this.http.get(`http://api.datamuse.com/words?rel_trg=${noun}&max=20`);
+    //Rolls whether to use rel_trg or ml
+    if (Math.random() > .5) {
+      return this.http.get(`http://api.datamuse.com/words?rel_trg=${noun}&max=20`);
+    } else {
+      return this.http.get(`http://api.datamuse.com/words?ml=${noun}&max=20`);
+    }
   }
 
   getAdjFor(noun: string) {

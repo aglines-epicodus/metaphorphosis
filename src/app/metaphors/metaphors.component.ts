@@ -50,7 +50,7 @@ export class MetaphorsComponent implements OnInit {
   }
 
   makeMetaphor() {
-    this.datamuseService.getDatamuseResponse(this.currentConcept);
+    // this.datamuseService.getDatamuseResponse(this.currentConcept);
 
     console.log(this.currentConcept);
     this.datamuseService.getNouns(this.currentConcept).subscribe(response => {
@@ -63,31 +63,34 @@ export class MetaphorsComponent implements OnInit {
       //returns an object with two keys, a string to be used as a template and a number of concepts necessary to fill the template:
       let templateObj = this.madLibService.buildMadLib();
 
-      //governs rolling singular and plural forms of concepts and using correct particles with them.
-      switch(Math.floor(Math.random() * 4)) {
-        case 0:
-          nounOne = `${Articles.articlize(nounOne)}`;
-          nounTwo = `${Articles.articlize(nounTwo)}`;
-        break;
-        case 1:
-          nounOne = `${RiTa.pluralize(nounOne)}`;
-          nounTwo = `${Articles.articlize(nounTwo)}`;
-        break;
-        case 2:
-          nounOne = `${Articles.articlize(nounOne)}`;
-          nounTwo = `${RiTa.pluralize(nounTwo)}`;
-        break;
-        case 3:
-          nounOne = `${RiTa.pluralize(nounOne)}`;
-          nounTwo = `${RiTa.pluralize(nounTwo)}`;
-        break;
-        default:
-        console.log('Whoops.')
-      }
       //Assign adjectives to nounOne some of the time. NOTE: adjectives are based on currentConcept, not nounOne
       if (Math.random() > .5) {
         this.datamuseService.getAdjFor(this.currentConcept).subscribe(response => {
+          console.log(this.currentConcept);
           nounOne = `${response.json()[Math.floor(Math.random() * response.json().length)].word} ${nounOne}`
+
+          //governs rolling singular and plural forms of concepts and using correct particles with them.
+          switch(Math.floor(Math.random() * 4)) {
+            case 0:
+              nounOne = `${Articles.articlize(nounOne)}`;
+              nounTwo = `${Articles.articlize(nounTwo)}`;
+            break;
+            case 1:
+              nounOne = `${RiTa.pluralize(nounOne)}`;
+              nounTwo = `${Articles.articlize(nounTwo)}`;
+            break;
+            case 2:
+              nounOne = `${Articles.articlize(nounOne)}`;
+              nounTwo = `${RiTa.pluralize(nounTwo)}`;
+            break;
+            case 3:
+              nounOne = `${RiTa.pluralize(nounOne)}`;
+              nounTwo = `${RiTa.pluralize(nounTwo)}`;
+            break;
+            default:
+            console.log('Whoops.')
+          }
+
           let newMetaphor = new Metaphor(`
             ${this.firstConcept}
             ${templateObj.template
@@ -98,6 +101,28 @@ export class MetaphorsComponent implements OnInit {
           this.currentMetaphors.push(newMetaphor);
         });
       } else {
+        //governs rolling singular and plural forms of concepts and using correct particles with them.
+        switch(Math.floor(Math.random() * 4)) {
+          case 0:
+            nounOne = `${Articles.articlize(nounOne)}`;
+            nounTwo = `${Articles.articlize(nounTwo)}`;
+          break;
+          case 1:
+            nounOne = `${RiTa.pluralize(nounOne)}`;
+            nounTwo = `${Articles.articlize(nounTwo)}`;
+          break;
+          case 2:
+            nounOne = `${Articles.articlize(nounOne)}`;
+            nounTwo = `${RiTa.pluralize(nounTwo)}`;
+          break;
+          case 3:
+            nounOne = `${RiTa.pluralize(nounOne)}`;
+            nounTwo = `${RiTa.pluralize(nounTwo)}`;
+          break;
+          default:
+          console.log('Whoops.')
+        }
+
         let newMetaphor = new Metaphor(`
           ${this.firstConcept}
           ${templateObj.template
