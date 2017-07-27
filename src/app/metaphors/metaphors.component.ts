@@ -49,81 +49,67 @@ export class MetaphorsComponent implements OnInit {
     });
   }
 
-  makeMetaphor() {
-    // this.datamuseService.getDatamuseResponse(this.currentConcept);
+  decidePlurals(nounOne: string, nounTwo: string) {
+    switch(Math.floor(Math.random() * 4)) {
+      case 0:
+      nounOne = `${Articles.articlize(nounOne)}`;
+      nounTwo = `${Articles.articlize(nounTwo)}`;
+      break;
+      case 1:
+      nounOne = `${RiTa.pluralize(nounOne)}`;
+      nounTwo = `${Articles.articlize(nounTwo)}`;
+      break;
+      case 2:
+      nounOne = `${Articles.articlize(nounOne)}`;
+      nounTwo = `${RiTa.pluralize(nounTwo)}`;
+      break;
+      case 3:
+      nounOne = `${RiTa.pluralize(nounOne)}`;
+      nounTwo = `${RiTa.pluralize(nounTwo)}`;
+      break;
+      default:
+      console.log('Whoops.')
+    }
+    return [nounOne, nounTwo];
+  }
 
-    console.log(this.currentConcept);
+  setMetaphor(nounOne: string, nounTwo: string) {
+    let templateObj = this.madLibService.buildMadLib();
+    let newMetaphor = new Metaphor(`
+      ${this.firstConcept}
+      ${templateObj.template
+      .replace('CONCEPT2', nounOne)
+      .replace('CONCEPT3', nounTwo)}`); //if no third concept, this fails quietly and without error.
+    newMetaphor.concepts.push(nounOne);
+    newMetaphor.concepts.push(nounTwo);
+    this.currentMetaphors.push(newMetaphor);
+  }
+
+  makeMetaphor() {
+    this.datamuseService.getDatamuseResponse(this.currentConcept);
+
+    // console.log(this.currentConcept);
     //Implement a short-circuit code path which plugs the existing concept list into a different mad-lib:
     if (Math.random() > .7 && this.currentMetaphors.length > 0) {
-      let templateObj = this.madLibService.buildMadLib();
       let nounOne = RiTa.singularize(this.currentMetaphors[0].concepts[0]);
       let nounTwo = RiTa.singularize(this.currentMetaphors[0].concepts[1]);
       if (Math.random() > .5) {
         this.datamuseService.getAdjFor(this.currentConcept).subscribe(response => {
           nounOne = `${response.json()[Math.floor(Math.random() * response.json().length)].word} ${nounOne}`
-          //governs rolling singular and plural forms of concepts and using correct particles with them.
-          switch(Math.floor(Math.random() * 4)) {
-            case 0:
-            nounOne = `${Articles.articlize(nounOne)}`;
-            nounTwo = `${Articles.articlize(nounTwo)}`;
-            break;
-            case 1:
-            nounOne = `${RiTa.pluralize(nounOne)}`;
-            nounTwo = `${Articles.articlize(nounTwo)}`;
-            break;
-            case 2:
-            nounOne = `${Articles.articlize(nounOne)}`;
-            nounTwo = `${RiTa.pluralize(nounTwo)}`;
-            break;
-            case 3:
-            nounOne = `${RiTa.pluralize(nounOne)}`;
-            nounTwo = `${RiTa.pluralize(nounTwo)}`;
-            break;
-            default:
-            console.log('Whoops.')
-          }
 
-          let newMetaphor = new Metaphor(`
-            ${this.firstConcept}
-            ${templateObj.template
-              .replace('CONCEPT2', nounOne)
-              .replace('CONCEPT3', nounTwo)}`); //if no third concept, this fails quietly and without error.
-              newMetaphor.concepts.push(nounOne);
-              newMetaphor.concepts.push(nounTwo);
-              this.currentMetaphors.push(newMetaphor);
-            });
-          } else {
-            //governs rolling singular and plural forms of concepts and using correct particles with them.
-            switch(Math.floor(Math.random() * 4)) {
-              case 0:
-              nounOne = `${Articles.articlize(nounOne)}`;
-              nounTwo = `${Articles.articlize(nounTwo)}`;
-              break;
-              case 1:
-              nounOne = `${RiTa.pluralize(nounOne)}`;
-              nounTwo = `${Articles.articlize(nounTwo)}`;
-              break;
-              case 2:
-              nounOne = `${Articles.articlize(nounOne)}`;
-              nounTwo = `${RiTa.pluralize(nounTwo)}`;
-              break;
-              case 3:
-              nounOne = `${RiTa.pluralize(nounOne)}`;
-              nounTwo = `${RiTa.pluralize(nounTwo)}`;
-              break;
-              default:
-              console.log('Whoops.')
-            }
+          let nounsWithNumber = this.decidePlurals(nounOne, nounTwo);
+          nounOne = nounsWithNumber[0];
+          nounOne = nounsWithNumber[1];
 
-            let newMetaphor = new Metaphor(`
-              ${this.firstConcept}
-              ${templateObj.template
-                .replace('CONCEPT2', nounOne)
-                .replace('CONCEPT3', nounTwo)}`); //if no third concept, this fails quietly and without error.
-            newMetaphor.concepts.push(nounOne);
-            newMetaphor.concepts.push(nounTwo);
-            this.currentMetaphors.push(newMetaphor);
-          }
+          this.setMetaphor(nounOne, nounTwo);
+        });
+      } else {
+        let nounsWithNumber = this.decidePlurals(nounOne, nounTwo);
+        nounOne = nounsWithNumber[0];
+        nounOne = nounsWithNumber[1];
+
+        this.setMetaphor(nounOne, nounTwo);
+      }
     } else {
       this.datamuseService.getNouns(this.currentConcept).subscribe(response => {
         let nounOne = response.json()[Math.floor(Math.random() * response.json().length)];
@@ -146,68 +132,19 @@ export class MetaphorsComponent implements OnInit {
     if (Math.random() > .5) {
       this.datamuseService.getAdjFor(this.currentConcept).subscribe(response => {
         nounOne.word = `${response.json()[Math.floor(Math.random() * response.json().length)].word} ${nounOne.word}`
-        //governs rolling singular and plural forms of concepts and using correct particles with them.
-        switch(Math.floor(Math.random() * 4)) {
-          case 0:
-          nounOne.word = `${Articles.articlize(nounOne.word)}`;
-          nounTwo.word = `${Articles.articlize(nounTwo.word)}`;
-          break;
-          case 1:
-          nounOne.word = `${RiTa.pluralize(nounOne.word)}`;
-          nounTwo.word = `${Articles.articlize(nounTwo.word)}`;
-          break;
-          case 2:
-          nounOne.word = `${Articles.articlize(nounOne.word)}`;
-          nounTwo.word = `${RiTa.pluralize(nounTwo.word)}`;
-          break;
-          case 3:
-          nounOne.word = `${RiTa.pluralize(nounOne.word)}`;
-          nounTwo.word = `${RiTa.pluralize(nounTwo.word)}`;
-          break;
-          default:
-          console.log('Whoops.')
-        }
 
-        let newMetaphor = new Metaphor(`
-          ${this.firstConcept}
-          ${templateObj.template
-            .replace('CONCEPT2', nounOne.word)
-            .replace('CONCEPT3', nounTwo.word)}`); //if no third concept, this fails quietly and without error.
-            newMetaphor.concepts.push(nounOne.word);
-            newMetaphor.concepts.push(nounTwo.word);
-            this.currentMetaphors.push(newMetaphor);
-          });
-        } else {
-          //governs rolling singular and plural forms of concepts and using correct particles with them.
-          switch(Math.floor(Math.random() * 4)) {
-            case 0:
-            nounOne.word = `${Articles.articlize(nounOne.word)}`;
-            nounTwo.word = `${Articles.articlize(nounTwo.word)}`;
-            break;
-            case 1:
-            nounOne.word = `${RiTa.pluralize(nounOne.word)}`;
-            nounTwo.word = `${Articles.articlize(nounTwo.word)}`;
-            break;
-            case 2:
-            nounOne.word = `${Articles.articlize(nounOne.word)}`;
-            nounTwo.word = `${RiTa.pluralize(nounTwo.word)}`;
-            break;
-            case 3:
-            nounOne.word = `${RiTa.pluralize(nounOne.word)}`;
-            nounTwo.word = `${RiTa.pluralize(nounTwo.word)}`;
-            break;
-            default:
-            console.log('Whoops.')
-          }
+        let nounsWithNumber = this.decidePlurals(nounOne.word, nounTwo.word);
+        nounOne.word = nounsWithNumber[0];
+        nounOne.word = nounsWithNumber[1];
 
-          let newMetaphor = new Metaphor(`
-            ${this.firstConcept}
-            ${templateObj.template
-              .replace('CONCEPT2', nounOne.word)
-              .replace('CONCEPT3', nounTwo.word)}`); //if no third concept, this fails quietly and without error.
-          newMetaphor.concepts.push(nounOne.word);
-          newMetaphor.concepts.push(nounTwo.word);
-          this.currentMetaphors.push(newMetaphor);
+        this.setMetaphor(nounOne.word, nounTwo.word);
+        });
+      } else {
+        let nounsWithNumber = this.decidePlurals(nounOne.word, nounTwo.word);
+        nounOne.word = nounsWithNumber[0];
+        nounOne.word = nounsWithNumber[1];
+
+        this.setMetaphor(nounOne.word, nounTwo.word);
         }
       });
     }
