@@ -58,8 +58,7 @@ export class HallOfFameDetailComponent implements OnInit, AfterViewChecked {
         svg.setAttribute('width', width);
         svg.setAttribute('height', height);
 
-
-        line.setAttribute('style', 'stroke:rgb(0,0,0);stroke-width:1');
+        line.setAttribute('style', `stroke:rgb(${Math.floor(Math.random() * 255) + 1},${Math.floor(Math.random() * 255) + 1},${Math.floor(Math.random() * 255) + 1});stroke-width:3`);
 
         svg.appendChild(line);
 
