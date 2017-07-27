@@ -5,7 +5,7 @@ header {
   justify-content: space-between;
   align-items: flex-end;
   padding: 45px 0 5px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $pseudo-black;
   margin-bottom: 50px;
   height: 50px;
 
@@ -33,7 +33,7 @@ header {
     .burger {
       width: 45px;
       height: 40px;
-      border: 1px solid black;
+      // border: 1px solid $pseudo-black;
       position: relative;
       cursor: pointer;
       // z-index: 20;
@@ -41,10 +41,10 @@ header {
       span {
         display: block;
         position: absolute;
-        height: 2px;
+        height: 4px;
         width: 38px;
         left: 3.5px;
-        background: black;
+        background: $pseudo-black;
 
         &.top {
           top: 9px;
@@ -72,13 +72,14 @@ header {
       z-index: 2;
       list-style-type: none;
       padding: 15px;
-      border-left: 2px solid black;
+      padding-top: 35px;
+      border-left: 2px solid $pseudo-black;
 
       .close-button {
         position: absolute;
-        top: 20px;
+        top: 15px;
         right: 20px;
-        font-size: 24px;
+        font-size: 36px;
         cursor: pointer;
       }
 
@@ -87,7 +88,7 @@ header {
         height: 90%;
 
         li {
-          border-bottom: 1px solid black;
+          border-bottom: 1px solid $pseudo-black;
           margin-bottom: 20px;
           padding: 15px;
 
@@ -96,11 +97,11 @@ header {
             letter-spacing: .5px !important;
           }
         }
-        .mobile-copyright {
-          position: absolute;
-          left: 0;
-          bottom: 30px;
-        }
+        // .mobile-copyright {
+        //   position: absolute;
+        //   left: 0;
+        //   bottom: 30px;
+        // }
       }
     }
   }
@@ -113,7 +114,7 @@ header {
 
   .horizontal-accent {
     width: 70%;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid $pseudo-black;
     display: inline-block;
     position: absolute;
     right: 0;
@@ -122,7 +123,7 @@ header {
   }
   .vertical-accent {
     height: 50%;
-    border-right: 1px solid black;
+    border-right: 1px solid $pseudo-black;
     display: inline-block;
     position: absolute;
     right: 0;
@@ -131,7 +132,7 @@ header {
   }
   .left-vertical-accent {
     height: 100%;
-    border-right: 1px solid black;
+    border-right: 1px solid $pseudo-black;
     display: inline-block;
     position: absolute;
     left: 0;
@@ -166,36 +167,62 @@ header {
 }
 
 footer {
+  color: $pseudo-black;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 50px;
-  border-top: 1px solid black;
+  border-top: 1px solid $pseudo-black;
   padding: 10px 0 15px;
-  display: none;
+  display: flex;
+  justify-content: flex-start;
 
   .social {
-    i {
+    svg {
       width: 40px;
       height: 40px;
       display: inline-block;
       margin-right: 15px;
-      background-size: 40px 40px;
+      display: none;
 
-      &.facebook {
-        background-image: url('../assets/img/icons/facebook.png')
-      }
-      &.twitter {
-        background-image: url('../assets/img/icons/twitter.png')
-      }
-      &.github {
-        background-image: url('../assets/img/icons/github.png')
-      }
     }
+
+    // i {
+    //   width: 40px;
+    //   height: 40px;
+    //   display: inline-block;
+    //   margin-right: 15px;
+    //   background-size: 40px 40px;
+    //
+    //   &.facebook {
+    //     background-image: url('../assets/img/icons/facebook.svg')
+    //   }
+    //   &.twitter {
+    //     background-image: url('../assets/img/icons/twitter.svg')
+    //   }
+    //   &.github {
+    //     background-image: url('../assets/img/icons/github.svg')
+    //   }
+    // }
+  }
+
+  span {
+    color: $pseudo-black;
+    display: inline-block;
+    font-size: 10px;
   }
 
   @include tablet-bp {
     display: flex;
+    justify-content: space-between;
+    span {
+      font-size: 18px;
+    }
+    .social {
+      svg {
+        display: inline-block;
+      }
+    }
   }
 }
 

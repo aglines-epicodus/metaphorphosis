@@ -1,8 +1,11 @@
+@import '../../assets/style_partials/main';
+// src/assets/style_partials/_main.scss
+
 .selected {
   background: #fff;
   display: inline-block;
   padding: 10px;
-  border: 1px solid black;
+  border: 1px solid $pseudo-black;
 }
 
 .selected, .abandoned {

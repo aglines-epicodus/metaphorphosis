@@ -1,3 +1,5 @@
+@import '../../assets/style_partials/main';
+
 h2 {
   position: absolute;
   font-size: 30px;
@@ -20,7 +22,7 @@ h2 {
   button {
     margin-top: 200px;
     background: white;
-    border: 1px solid black;
+    border: 1px solid $pseudo-black;
     border-radius: 5px;
     padding: 15px 30px;
     font-size: 24px;
@@ -29,7 +31,7 @@ h2 {
 
     &:hover {
       color: white;
-      background: black;
+      background: $pseudo-black;
       border: 1px solid transparent;
     }
   }
