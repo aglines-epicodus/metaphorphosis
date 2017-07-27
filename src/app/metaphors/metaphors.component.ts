@@ -141,10 +141,7 @@ export class MetaphorsComponent implements OnInit {
         nounOne = nounsWithNumber[0];
         nounTwo = nounsWithNumber[1];
 
-<<<<<<< HEAD
-=======
         console.log(`concepts: 1: ${nounOne} and 2: ${nounTwo}`);
->>>>>>> master
         this.setMetaphor(nounOne, nounTwo);
       });
     } else {
