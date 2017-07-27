@@ -9,16 +9,16 @@ export class DatamuseService {
 
 
   getNouns(noun: string) {
-    //Rolls whether to use rel_trg or ml
-    if (Math.random() > .5) {
-      return this.http.get(`http://api.datamuse.com/words?rel_trg=${noun}&max=20`);
+    //Rolls whether to use rel_trg. Use holo or hypernyms optionally?
+    if (Math.random() > .75) {
+      return this.http.get(`http://api.datamuse.com/words?rel_syn=${noun}&max=20&md=p`);
     } else {
-      return this.http.get(`http://api.datamuse.com/words?ml=${noun}&max=20`);
+      return this.http.get(`http://api.datamuse.com/words?ml=${noun}&max=20&md=p`);
     }
   }
 
   getAdjFor(noun: string) {
-    return this.http.get(`http://api.datamuse.com/words?rel_jjb=${noun}&max=25`);
+    return this.http.get(`http://api.datamuse.com/words?rel_jjb=${noun}&max=25&md=p`);
   }
 
   getDatamuseResponse(selectedWord: string) {
