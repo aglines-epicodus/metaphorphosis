@@ -1,5 +1,5 @@
 import { ModuleWithProviders }  from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
 import { AddConceptComponent } from '../add-concept/add-concept.component';
 import { ExhaustionComponent } from '../exhaustion/exhaustion.component';
@@ -7,6 +7,7 @@ import { HallOfFameComponent } from '../hall-of-fame/hall-of-fame.component';
 import { HallOfFameDetailComponent } from '../hall-of-fame-detail/hall-of-fame-detail.component';
 import { AboutComponent } from '../about/about.component';
 import { MetaphorsComponent } from '../metaphors/metaphors.component';
+import { AuthGuardService } from '../services/auth-guard.service';
 
 const appRoutes: Routes = [
   {
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
   },
   {
     path: 'addconcept',
-    component: AddConceptComponent
+    component: AddConceptComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'exhaustion',

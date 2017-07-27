@@ -1,6 +1,18 @@
 <div *ngIf="list">
   <h2>Anthology</h2>
-  <div *ngFor="let item of list | async | popular">
+  <p class="sort-container">Sort By: &nbsp;&nbsp;<a (click)="setFilterType('popular')">Popularity</a>&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;<a (click)="setFilterType('recent')">Recent</a></p>
+  <div *ngFor="let item of list | async | popular:filter:page">
     <span class="metaphor"><span [class]="determineClicked(item)" (click)="item.counter = item.counter + 1; saveUpdate(item);"></span><span class="counter">{{item.counter}}</span><span class="metaphor-title" (click)="findDetail(item.refId)">{{item.metaphor}} &rarr;</span></span>
+  </div>
+</div>
+<div class="pagination-container">
+  <div class="previous">
+    <span (click)="setPage(page - 1)" *ngIf="showPrevious()">&larr; Previous</span>
+  </div>
+  <div class="pages">
+    <span *ngFor="let page of pages" (click)="setPage(page + 1)">{{page + 1}}</span>
+  </div>
+  <div class="next">
+    <span (click)="setPage(page + 1)" *ngIf="showNext()">Next &rarr;</span>
   </div>
 </div>
