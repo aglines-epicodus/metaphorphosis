@@ -6,9 +6,11 @@ export class MadLibService {
   stems: any[] = [
     {template:'is like CONCEPT2', concepts: 2},
     {template:'is more than CONCEPT2', concepts: 2},
+    {template:'is less than CONCEPT2', concepts: 2},
     {template:'is less like CONCEPT2', concepts: 2},
     {template:'feels like CONCEPT2', concepts: 2},
     {template:'is CONCEPT2', concepts: 2},
+    {template:'isn\'t CONCEPT2', concepts: 2},
     {template:'isn\'t just CONCEPT2', concepts: 2},
     {template:'is just CONCEPT2', concepts: 2}
   ];
