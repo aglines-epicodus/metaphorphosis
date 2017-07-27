@@ -57,8 +57,10 @@ export class MetaphorsComponent implements OnInit {
       console.log(response.json());
       let nounOne: string = RiTa.singularize(response.json()[Math.floor(Math.random() * response.json().length)].word);
       let nounTwo: string = RiTa.singularize(response.json()[Math.floor(Math.random() * response.json().length)].word);
-      while (nounOne === nounTwo) {
+      let loopCounter = 0;
+      while (nounOne === nounTwo && loopCounter < 100) {
         nounTwo = response.json()[Math.floor(Math.random() * response.json().length)].word;
+        loopCounter ++;
       }
       //returns an object with two keys, a string to be used as a template and a number of concepts necessary to fill the template:
       let templateObj = this.madLibService.buildMadLib();
