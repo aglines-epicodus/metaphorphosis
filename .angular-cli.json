@@ -22,7 +22,8 @@
         "styles.scss"
       ],
       "scripts": [
-        "assets/rita.min.js"
+        "assets/rita.min.js",
+        "node_modules/gsap/src/uncompressed/TweenMax.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
