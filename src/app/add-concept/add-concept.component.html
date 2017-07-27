@@ -1,10 +1,20 @@
 <h2>Add a Concept</h2>
 <form #addConceptForm="ngForm" (ngSubmit)="addConcept(addConceptForm); false">
   <label for="concept">Concept: </label>
-  <input name="concept" type="text" ngModel>
-  <button type="submit">Submit</button>
+  <input name="concept" type="text" class="submit-input" ngModel>
+  <button type="submit" class="button submit-button">Add Concept</button>
 </form>
 
 <ul>
-  <li *ngFor="let concept of conceptService.concepts | async">{{concept.concept}}</li>
+  <li *ngFor="let concept of conceptService.concepts | async">
+    <div class="not-controls">
+      <span *ngIf="!checkForEditing(concept)">{{concept.concept}}</span>
+      <input type="text" [(ngModel)]="concept.concept" *ngIf="checkForEditing(concept)">
+    </div>
+    <div class="controls">
+      <span (click)="startEditing(concept)" class="button" *ngIf="!checkForEditing(concept)">Edit</span>
+      <span (click)="stopEditing(concept)" class="button" *ngIf="checkForEditing(concept)">Save</span>
+      <span (click)="removeConcept(concept.$key)" class="button">Remove</span>
+    </div>
+  </li>
 </ul>

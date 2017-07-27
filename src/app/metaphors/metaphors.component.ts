@@ -116,19 +116,22 @@ export class MetaphorsComponent implements OnInit {
       .replace('CONCEPT2', nounOne)
       .replace('CONCEPT3', nounTwo)}`); //if no third concept, this fails quietly and without error.
     newMetaphor.concepts.push(nounOne);
-    newMetaphor.concepts.push(nounTwo);
+    if (templateObj.template.includes(nounTwo)) {
+      newMetaphor.concepts.push(nounTwo);
+    }
     this.currentMetaphors.push(newMetaphor);
   }
 
   makeMetaphor() {
-
-    // this.datamuseService.getDatamuseResponse(this.currentConcept);
-    // console.log(this.currentConcept);
-
-    //Implement a short-circuit code path which plugs the existing concept list into a different mad-lib:
+    //A short-circuit code path which plugs the existing concept list into a different mad-lib:
     if (Math.random() > .8 && this.currentMetaphors.length > 0) {
+      console.log('In the shortcut:')
       let nounOne = this.currentMetaphors[0].concepts[0].slice(-3) === 'ous' ? this.currentMetaphors[0].concepts[0] : RiTa.singularize(this.currentMetaphors[0].concepts[0]);
-      let nounTwo = this.currentMetaphors[0].concepts[1].slice(-3) === 'ous' ? this.currentMetaphors[0].concepts[1] : RiTa.singularize(this.currentMetaphors[0].concepts[1]);
+      //Define a fallback value for nounTwo in case of no defined second concept;
+      let nounTwo = this.firstConcept;
+      if (this.currentMetaphors[0].concepts.length > 1) {
+        let nounTwo = this.currentMetaphors[0].concepts[1].slice(-3) === 'ous' ? this.currentMetaphors[0].concepts[1] : RiTa.singularize(this.currentMetaphors[0].concepts[1]);
+      }
       this.getAdjectives().subscribe(response => {
         let nounsWithAdjs = this.decideAdjectives(response, nounOne, nounTwo);
         nounOne = nounsWithAdjs[0];
@@ -138,13 +141,20 @@ export class MetaphorsComponent implements OnInit {
         nounOne = nounsWithNumber[0];
         nounTwo = nounsWithNumber[1];
 
+<<<<<<< HEAD
+=======
+        console.log(`concepts: 1: ${nounOne} and 2: ${nounTwo}`);
+>>>>>>> master
         this.setMetaphor(nounOne, nounTwo);
       });
     } else {
+      console.log(`Current Concept is: ${this.currentConcept}`);
       this.datamuseService.getNouns(this.currentConcept).subscribe(response => {
         let nounOne = response.json()[Math.floor(Math.random() * response.json().length)];
         let nounTwo = response.json()[Math.floor(Math.random() * response.json().length)];
         let loopCounter = 0;
+        console.log(nounOne);
+        console.log(nounTwo);
         while (nounOne.word === nounTwo.word
           && (nounOne.tags && !nounOne.tags.includes('n'))
           && (nounTwo.tags && !nounTwo.tags.includes('n'))
@@ -155,7 +165,7 @@ export class MetaphorsComponent implements OnInit {
           }
         //Once we've set the word objects, singularize .word manually.
         nounOne.word = nounOne.word.slice(-3) === 'ous' ? nounOne.word : RiTa.singularize(nounOne.word);
-        nounTwo.word = nounOne.word.slice(-3) === 'ous' ? nounTwo.word : RiTa.singularize(nounTwo.word);
+        nounTwo.word = nounTwo.word.slice(-3) === 'ous' ? nounTwo.word : RiTa.singularize(nounTwo.word);
         //returns an object with two keys, a string to be used as a template and a number of concepts necessary to fill the template:
         this.getAdjectives().subscribe(response => {
           let nounsWithAdjs = this.decideAdjectives(response, nounOne.word, nounTwo.word);
@@ -166,6 +176,7 @@ export class MetaphorsComponent implements OnInit {
           nounOne.word = nounsWithNumber[0];
           nounTwo.word = nounsWithNumber[1];
 
+          console.log(`concepts: 1: ${nounOne.word} and 2: ${nounTwo.word}`);
           this.setMetaphor(nounOne.word, nounTwo.word);
         });
       });
@@ -218,7 +229,8 @@ export class MetaphorsComponent implements OnInit {
     this.currentMetaphors = [];
     this.currentMetaphors.push(metaphor);
     let currentConceptTokens = RiTa.tokenize(metaphor.concepts[Math.floor(Math.random() * metaphor.concepts.length)]);
-    this.currentConcept = RiTa.singularize(currentConceptTokens[currentConceptTokens.length - 1]);
+    console.log(currentConceptTokens);
+    this.currentConcept = currentConceptTokens[currentConceptTokens.length - 1];
     this.makeMetaphor();
 
   }
