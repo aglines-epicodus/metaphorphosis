@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import './assets/style_partials/main';
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: $pseudo-black;
 
   &:after, &:before {
     margin: 0;
@@ -21,7 +24,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 1.5em;
+  font-size: 1em;
+  @include mobile-bp {
+    font-size: 1.8em;
+  }
 }
 
 html, body, app-root {
@@ -40,7 +46,7 @@ html, body, app-root {
 
 a {
   text-decoration: none;
-  color: black;
+  color: $pseudo-black;
   font-size: 20px;
   transition: font-size .3s, letter-spacing .3s;
 
@@ -48,4 +54,7 @@ a {
     font-size: 24px !important;
     letter-spacing: 3px;
   }
+}
+svg {
+  fill: $pseudo-black;
 }

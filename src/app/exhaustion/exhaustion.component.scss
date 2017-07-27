@@ -1,3 +1,5 @@
+@import '../../assets/style_partials/main';
+
 h1,h2,h3,h4,h5,h6 {
   letter-spacing: 0;
   margin-bottom: 30px;
@@ -36,13 +38,13 @@ a {
       width: 200px;
       font-size: 18px;
       border-radius: 5px;
-      border: 1px solid black;
+      border: 1px solid $pseudo-black;
       background: #fff;
       cursor: pointer;
       transition: all .3s;
 
       &:hover {
-        background: #000;
+        // background: $pseudo-black;
         color: #fff;
         border: 1px solid transparent;
       }

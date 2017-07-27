@@ -8,7 +8,7 @@
         <li class="spacer">//</li>
         <li><a routerLink="/metaphors">Metaphors</a></li>
         <li class="spacer">//</li>
-        <li><a routerLink="/halloffame">Hall Of Fame</a></li>
+        <li><a routerLink="/halloffame">Anthology</a></li>
         <li class="spacer">//</li>
         <li><a routerLink="/about">About</a></li>
         <li *ngIf="auth.isAdmin"><a routerLink="/addconcept">// Admin</a></li>
@@ -21,18 +21,18 @@
         <span class="bottom"></span>
       </div>
       <ul [@slide-mobile]="state">
-        <span class="close-button" (click)="animateMe()">X</span>
+        <span class="close-button" (click)="animateMe()">✕</span>
         <div class="mobile-nav-content">
           <li *ngIf="isLoggedIn"><a (click)="logout()">Logout</a></li>
           <li *ngIf="!isLoggedIn"><a (click)="login()">Login</a></li>
           <li><a routerLink="/metaphors">Metaphors</a></li>
-          <li><a routerLink="/halloffame">Hall Of Fame</a></li>
+          <li><a routerLink="/halloffame">Anthology</a></li>
           <li><a routerLink="/about">About</a></li>
-          <li><a routerLink="/about">Facebook</a></li>
-          <li><a routerLink="/about">Twitter</a></li>
-          <li><a routerLink="/about">Github</a></li>
         </div>
-        <p class="mobile-copyright">&copy; 2017, Charles Emrich, Jared Eiseman, Andrew Glines, Brian Rush</p>
+        <div class="social">
+          <i class="facebook"><a href="#"></a></i><i class="twitter"><a href="#"></a></i><i class="github"><a href="#"></a></i>
+        </div>
+        <!-- <p class="mobile-copyright">&copy; 2017, Charles Emrich, Jared Eiseman, Andrew Glines, Brian Rush</p> -->
       </ul>
     </nav>
   </header>
@@ -46,9 +46,58 @@
 
   <footer>
     <div class="social">
-      <i class="facebook"></i>
-      <i class="twitter"></i>
-      <i class="github"></i>
+      <!-- <i class="facebook"><a href="#"></a></i> -->
+      <svg class="facebook" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      	 width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+      <g>
+      	<path d="M256,0C114.609,0,0,114.609,0,256c0,141.391,114.609,256,256,256c141.391,0,256-114.609,256-256
+      		C512,114.609,397.391,0,256,0z M256,472c-119.297,0-216-96.703-216-216S136.703,40,256,40s216,96.703,216,216S375.297,472,256,472z
+      		"/>
+      	<path d="M316.75,216.812h-44.531v-32.5c0-9.969,10.312-12.281,15.125-12.281c4.781,0,28.767,0,28.767,0v-43.859L283.141,128
+      		c-44.983,0-55.25,32.703-55.25,53.672v35.141H195.25V262h32.641c0,58.016,0,122,0,122h44.328c0,0,0-64.641,0-122h37.656
+      		L316.75,216.812z"/>
+      </g>
+      </svg>
+      <!-- <i class="twitter"><a href="#"></a></i> -->
+      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      	 width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+      <g>
+      	<path d="M256,0C114.609,0,0,114.609,0,256c0,141.392,114.609,256,256,256c141.392,0,256-114.608,256-256
+      		C512,114.609,397.392,0,256,0z M256,472c-119.297,0-216-96.702-216-216c0-119.297,96.703-216,216-216c119.298,0,216,96.703,216,216
+      		C472,375.298,375.298,472,256,472z"/>
+      	<path d="M384,170.922c-4.312,2.562-17.248,7.671-29.312,8.953c7.735-4.491,19.188-19.203,22.016-30.89
+      		c-7.436,5.109-24.516,12.562-32.95,12.562c0,0,0,0.023,0.016,0.039C334.141,150.75,320.608,144,305.577,144
+      		c-29.154,0-52.81,25.461-52.81,56.875c0,4.36,0.481,8.595,1.357,12.672h-0.017c-39.562-1.094-85.811-22.446-111.874-59
+      		c-16,29.852-2.156,63.046,16.015,75.141c-6.203,0.516-17.671-0.766-23.061-6.407c-0.375,19.797,8.484,46.048,40.735,55.562
+      		c-6.221,3.61-17.19,2.579-21.984,1.781c1.687,16.75,23.437,38.623,47.202,38.623c-8.47,10.534-37.373,29.706-73.141,23.596
+      		C152.298,358.782,180.625,368,210.608,368c85.205,0,151.376-74.359,147.814-166.093c0-0.11-0.031-0.219-0.031-0.313
+      		c0-0.25,0.031-0.5,0.031-0.719c0-0.281-0.031-0.562-0.031-0.859C366.141,194.328,376.546,184.234,384,170.922z"/>
+      </g>
+      </svg>
+
+      <!-- <i class="github"><a href="https://github.com/aglines-epicodus/metaphorphosis"></a></i> -->
+      <a href="https://github.com/aglines-epicodus/metaphorphosis">
+        <svg class="github" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        width="512px" height="512px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+          <g>
+            <path d="M256,0C114.615,0,0,114.615,0,256s114.615,256,256,256s256-114.615,256-256S397.385,0,256,0z M408.027,408.027
+            c-19.76,19.759-42.756,35.267-68.354,46.094c-6.502,2.75-13.105,5.164-19.801,7.246V423c0-20.167-6.916-35-20.75-44.5
+            c8.668-0.833,16.625-2,23.875-3.5s14.918-3.667,23-6.5c8.084-2.833,15.334-6.208,21.75-10.125c6.418-3.917,12.584-9,18.5-15.25
+            c5.918-6.25,10.875-13.333,14.875-21.25s7.168-17.417,9.5-28.5c2.334-11.083,3.5-23.292,3.5-36.625c0-25.833-8.416-47.833-25.25-66
+            c7.668-20,6.834-41.75-2.5-65.25l-6.25-0.75c-4.332-0.5-12.125,1.333-23.375,5.5s-23.875,11-37.875,20.5
+            c-19.832-5.5-40.416-8.25-61.749-8.25c-21.5,0-42,2.75-61.5,8.25c-8.833-6-17.208-10.958-25.125-14.875s-14.25-6.583-19-8
+            s-9.167-2.292-13.25-2.625s-6.708-0.417-7.875-0.25s-2,0.333-2.5,0.5c-9.333,23.667-10.167,45.417-2.5,65.25
+            c-16.833,18.167-25.25,40.167-25.25,66c0,13.333,1.167,25.542,3.5,36.625s5.5,20.583,9.5,28.5s8.958,15,14.875,21.25
+            s12.083,11.333,18.5,15.25s13.667,7.292,21.75,10.125s15.75,5,23,6.5s15.208,2.667,23.875,3.5c-13.667,9.333-20.5,24.167-20.5,44.5
+            v39.115c-7.549-2.247-14.99-4.902-22.3-7.994c-25.597-10.827-48.594-26.335-68.353-46.094
+            c-19.758-19.758-35.267-42.756-46.093-68.354C46.679,313.195,41,285.043,41,256s5.679-57.195,16.879-83.675
+            c10.827-25.597,26.335-48.594,46.093-68.353c19.758-19.759,42.756-35.267,68.353-46.093C198.805,46.679,226.957,41,256,41
+            s57.195,5.679,83.676,16.879c25.598,10.827,48.594,26.335,68.354,46.093c19.758,19.758,35.266,42.756,46.092,68.353
+            C465.32,198.805,471,226.957,471,256s-5.68,57.195-16.879,83.675C443.295,365.271,427.785,388.27,408.027,408.027z"/>
+          </g>
+        </svg>
+      </a>
+
     </div>
     <span>&copy; 2017, Charles Emrich, Jared Eiseman, Andrew Glines, Brian Rush</span>
   </footer>
