@@ -7,7 +7,7 @@
 ## Description
 Seeded with a handful of complex, ambiguous, polysemic, or hard-to-define concepts (such as 'love,' 'play,' or 'art'), Metaphorphosis generates and presents to the user pairs of statements (originally metaphors). The user may choose one of the statements and the web app will replace the unchosen one with a new statement or metaphor based on the chosen one.
 
-(insert screen shot of main page here)
+<img src="src/assets/img/screenshots/metaphor.png" alt="metaphor page">
 
 If a statement is chosen enough times (in a single session) it will be included in the "Hall of Fame" where it may be seen and upvoted by other users.
 
