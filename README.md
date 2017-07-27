@@ -11,7 +11,8 @@ Seeded with a handful of complex, ambiguous, polysemic, or hard-to-define concep
 
 If a statement is chosen enough times (in a single session) it will be included in the "Hall of Fame" where it may be seen and upvoted by other users.
 
-(insert screenshot of hall of fame)
+<img src="https://github.com/aglines-epicodus/metaphorphosis/blob/master/src/assets/img/screenshots/anthology.png
+" alt="anthology page">
 
 
 
