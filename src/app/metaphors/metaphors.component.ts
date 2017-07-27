@@ -59,8 +59,8 @@ export class MetaphorsComponent implements OnInit {
       let nounTwo = response.json()[Math.floor(Math.random() * response.json().length)];
       let loopCounter = 0;
       while (nounOne.word === nounTwo.word
-            && !nounOne.tags.includes('n')
-            && !nounTwo.tags.includes('n')
+            && (nounOne.tags && !nounOne.tags.includes('n'))
+            && (nounTwo.tags && !nounTwo.tags.includes('n'))
             && loopCounter < 1000) {
         nounTwo = response.json()[Math.floor(Math.random() * response.json().length)];
         nounOne = response.json()[Math.floor(Math.random() * response.json().length)];
@@ -82,7 +82,6 @@ export class MetaphorsComponent implements OnInit {
           //governs rolling singular and plural forms of concepts and using correct particles with them.
           switch(Math.floor(Math.random() * 4)) {
             case 0:
-              nounOne.word = `${Articles.articlize(nounOne.word)}`;
               nounTwo.word = `${Articles.articlize(nounTwo.word)}`;
             break;
             case 1:
@@ -90,7 +89,6 @@ export class MetaphorsComponent implements OnInit {
               nounTwo.word = `${Articles.articlize(nounTwo.word)}`;
             break;
             case 2:
-              nounOne.word = `${Articles.articlize(nounOne.word)}`;
               nounTwo.word = `${RiTa.pluralize(nounTwo.word)}`;
             break;
             case 3:

@@ -10,7 +10,7 @@ export class DatamuseService {
 
   getNouns(noun: string) {
     //Rolls whether to use rel_trg. Use holo or hypernyms optionally?
-    if (Math.random() > .5) {
+    if (Math.random() > .75) {
       return this.http.get(`http://api.datamuse.com/words?rel_trg=${noun}&max=20`);
     } else {
       return this.http.get(`http://api.datamuse.com/words?ml=${noun}&max=20`);
