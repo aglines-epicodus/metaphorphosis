@@ -2,12 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Concept } from '../models/concept.model';
 import { ConceptService } from '../services/concept.service';
-
-//for testing only
 import { SessionService } from '../services/session.service';
-// import { Session } from '../models/session.model';
-// import { SessionInstance } from '../models/session-instance.model';
-// import { Metaphor } from '../models/metaphor.model';
 
 @Component({
   selector: 'app-add-concept',
@@ -16,24 +11,44 @@ import { SessionService } from '../services/session.service';
 })
 export class AddConceptComponent implements OnInit {
 
+  currentlyEditing: any;
+
   constructor(private conceptService: ConceptService, private sessionService: SessionService) { }
 
   ngOnInit() {
-    // var newConcept = new Concept('war');
-    // var newConceptLinkage = 'is like';
-    // var newConceptTwo = new Concept('politics');
-    // var newMetaphor = new Metaphor(newConcept, newConceptLinkage, newConceptTwo);
-    // var newSessionInstance = new SessionInstance(newMetaphor, newMetaphor, newMetaphor);
-    // // this.conceptService.activateConcept(); //for testing purposes only
-    //
-    // this.sessionService.createNewSession(newSessionInstance);
-    // this.sessionService.addSessionInstanceToSession(newSessionInstance);
-    //
-    // this.sessionService.commitSession();
+
+  }
+
+  startEditing(concept) {
+    this.currentlyEditing = concept;
+    console.log(this.currentlyEditing);
+  }
+
+  stopEditing(concept) {
+    this.currentlyEditing = null;
+    this.conceptService.updateConcept(concept);
+  }
+
+  checkForEditing(concept) {
+    if (this.currentlyEditing) {
+      if (this.currentlyEditing.$key === concept.$key) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
   }
 
   addConcept(form: NgForm) {
     var concept = new Concept(form.value.concept);
     this.conceptService.addConcept(concept);
+  }
+
+  removeConcept(key) {
+    if (confirm('Are you sure you want to remove this concept?')) {
+      this.conceptService.removeConcept(key);
+    }
   }
 }
