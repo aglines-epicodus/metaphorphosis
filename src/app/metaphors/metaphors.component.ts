@@ -52,25 +52,60 @@ export class MetaphorsComponent implements OnInit {
   decidePlurals(nounOne: string, nounTwo: string) {
     switch(Math.floor(Math.random() * 4)) {
       case 0:
-      nounOne = `${Articles.articlize(nounOne)}`;
-      nounTwo = `${Articles.articlize(nounTwo)}`;
+        nounOne = `${Articles.articlize(nounOne)}`;
+        nounTwo = `${Articles.articlize(nounTwo)}`;
       break;
       case 1:
-      nounOne = `${RiTa.pluralize(nounOne)}`;
-      nounTwo = `${Articles.articlize(nounTwo)}`;
+        nounOne = `${RiTa.pluralize(nounOne)}`;
+        nounTwo = `${Articles.articlize(nounTwo)}`;
       break;
       case 2:
-      nounOne = `${Articles.articlize(nounOne)}`;
-      nounTwo = `${RiTa.pluralize(nounTwo)}`;
+        nounOne = `${Articles.articlize(nounOne)}`;
+        nounTwo = `${RiTa.pluralize(nounTwo)}`;
       break;
       case 3:
-      nounOne = `${RiTa.pluralize(nounOne)}`;
-      nounTwo = `${RiTa.pluralize(nounTwo)}`;
+        nounOne = `${RiTa.pluralize(nounOne)}`;
+        nounTwo = `${RiTa.pluralize(nounTwo)}`;
       break;
       default:
       console.log('Whoops.')
     }
     return [nounOne, nounTwo];
+  }
+
+  getAdjectives() {
+    //Next line randomizes whether to use current or original concept as the source for the adj list.
+    let conceptToUse = Math.random() < .4 ? this.currentConcept : this.firstConcept;
+    return this.datamuseService.getAdjFor(this.currentConcept);
+  }
+
+  decideAdjectives(response: any, nounOne: string, nounTwo: string) {
+      let adjOne = response.json()[Math.floor(Math.random() * response.json().length)];
+      let adjTwo = response.json()[Math.floor(Math.random() * response.json().length)];
+
+      switch(Math.floor(Math.random() * 5)) {
+        case 0:
+          //No adjectives, so no change.
+        break;
+        case 1:
+          nounOne = `${adjOne.word} ${nounOne}`;
+        break;
+        case 2:
+          nounTwo = `${adjTwo.word} ${nounTwo}`;
+        break;
+        case 3:
+          nounOne = `${adjOne.word} ${nounOne}`;
+          nounTwo = `${adjTwo.word} ${nounTwo}`;
+        break;
+        case 4:
+        //Assign both nouns the same adjective.
+          nounOne = `${adjOne.word} ${nounOne}`;
+          nounTwo = `${adjOne.word} ${nounTwo}`;
+        break;
+        default:
+        console.log('Whoops.')
+      }
+      return [nounOne, nounTwo];
   }
 
   setMetaphor(nounOne: string, nounTwo: string) {
@@ -86,30 +121,25 @@ export class MetaphorsComponent implements OnInit {
   }
 
   makeMetaphor() {
-    this.datamuseService.getDatamuseResponse(this.currentConcept);
 
+    // this.datamuseService.getDatamuseResponse(this.currentConcept);
     // console.log(this.currentConcept);
+
     //Implement a short-circuit code path which plugs the existing concept list into a different mad-lib:
-    if (Math.random() > .7 && this.currentMetaphors.length > 0) {
-      let nounOne = RiTa.singularize(this.currentMetaphors[0].concepts[0]);
-      let nounTwo = RiTa.singularize(this.currentMetaphors[0].concepts[1]);
-      if (Math.random() > .5) {
-        this.datamuseService.getAdjFor(this.currentConcept).subscribe(response => {
-          nounOne = `${response.json()[Math.floor(Math.random() * response.json().length)].word} ${nounOne}`
+    if (Math.random() > .8 && this.currentMetaphors.length > 0) {
+      let nounOne = this.currentMetaphors[0].concepts[0].slice(-3) === 'ous' ? this.currentMetaphors[0].concepts[0] : RiTa.singularize(this.currentMetaphors[0].concepts[0]);
+      let nounTwo = this.currentMetaphors[0].concepts[1].slice(-3) === 'ous' ? this.currentMetaphors[0].concepts[1] : RiTa.singularize(this.currentMetaphors[0].concepts[1]);
+      this.getAdjectives().subscribe(response => {
+        let nounsWithAdjs = this.decideAdjectives(response, nounOne, nounTwo);
+        nounOne = nounsWithAdjs[0];
+        nounTwo = nounsWithAdjs[1];
 
-          let nounsWithNumber = this.decidePlurals(nounOne, nounTwo);
-          nounOne = nounsWithNumber[0];
-          nounOne = nounsWithNumber[1];
-
-          this.setMetaphor(nounOne, nounTwo);
-        });
-      } else {
         let nounsWithNumber = this.decidePlurals(nounOne, nounTwo);
         nounOne = nounsWithNumber[0];
-        nounOne = nounsWithNumber[1];
+        nounTwo = nounsWithNumber[1];
 
-        this.setMetaphor(nounOne, nounTwo);
-      }
+        this.setMetaphor(nounOne.word, nounTwo.word);
+      });
     } else {
       this.datamuseService.getNouns(this.currentConcept).subscribe(response => {
         let nounOne = response.json()[Math.floor(Math.random() * response.json().length)];
@@ -123,29 +153,21 @@ export class MetaphorsComponent implements OnInit {
             nounOne = response.json()[Math.floor(Math.random() * response.json().length)];
             loopCounter ++;
           }
-          //Once we've set the word objects, singularize .word manually.
-          nounOne.word = RiTa.singularize(nounOne.word);
-          nounTwo.word = RiTa.singularize(nounTwo.word);
-          //returns an object with two keys, a string to be used as a template and a number of concepts necessary to fill the template:
-          let templateObj = this.madLibService.buildMadLib();
-          //Assign adjectives to nounOne some of the time. NOTE: adjectives are based on currentConcept, not nounOne
-    if (Math.random() > .5) {
-      this.datamuseService.getAdjFor(this.currentConcept).subscribe(response => {
-        nounOne.word = `${response.json()[Math.floor(Math.random() * response.json().length)].word} ${nounOne.word}`
+        //Once we've set the word objects, singularize .word manually.
+        nounOne.word = nounOne.word.slice(-3) === 'ous' ? nounOne.word : RiTa.singularize(nounOne.word);
+        nounTwo.word = nounOne.word.slice(-3) === 'ous' ? nounTwo.word : RiTa.singularize(nounTwo.word);
+        //returns an object with two keys, a string to be used as a template and a number of concepts necessary to fill the template:
+        this.getAdjectives().subscribe(response => {
+          let nounsWithAdjs = this.decideAdjectives(response, nounOne.word, nounTwo.word);
+          nounOne.word = nounsWithAdjs[0];
+          nounTwo.word = nounsWithAdjs[1];
 
-        let nounsWithNumber = this.decidePlurals(nounOne.word, nounTwo.word);
-        nounOne.word = nounsWithNumber[0];
-        nounOne.word = nounsWithNumber[1];
+          let nounsWithNumber = this.decidePlurals(nounOne.word, nounTwo.word);
+          nounOne.word = nounsWithNumber[0];
+          nounTwo.word = nounsWithNumber[1];
 
-        this.setMetaphor(nounOne.word, nounTwo.word);
+          this.setMetaphor(nounOne.word, nounTwo.word);
         });
-      } else {
-        let nounsWithNumber = this.decidePlurals(nounOne.word, nounTwo.word);
-        nounOne.word = nounsWithNumber[0];
-        nounOne.word = nounsWithNumber[1];
-
-        this.setMetaphor(nounOne.word, nounTwo.word);
-        }
       });
     }
   }
