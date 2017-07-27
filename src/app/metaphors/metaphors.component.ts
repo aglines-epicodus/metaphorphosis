@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HallOfFameService } from '../services/hall-of-fame.service';
 import { SessionService } from '../services/session.service';
 import { Router } from '@angular/router';
+import * as Articles from 'articles';
 
 import { Metaphor } from "../models/metaphor.model";
 import { SessionInstance } from '../models/session-instance.model';
@@ -51,13 +52,35 @@ export class MetaphorsComponent implements OnInit {
   makeMetaphor() {
     // this.datamuseService.getAdjRelatedToNouns(this.currentConcept).subscribe(response => {
     this.datamuseService.getNouns(this.currentConcept).subscribe(response => {
-      let nounOne: string = response.json()[Math.floor(Math.random() * response.json().length)].word;
-      let nounTwo: string = response.json()[Math.floor(Math.random() * response.json().length)].word;
+      let nounOne: string = RiTa.singularize(response.json()[Math.floor(Math.random() * response.json().length)].word);
+      let nounTwo: string = RiTa.singularize(response.json()[Math.floor(Math.random() * response.json().length)].word);
       while (nounOne === nounTwo) {
         nounTwo = response.json()[Math.floor(Math.random() * response.json().length)].word;
       }
       //returns an object with two keys, a string to be used as a template and a number of concepts necessary to fill the template:
       let templateObj = this.madLibService.buildMadLib();
+
+      //governs rolling singular and plural forms of concepts and using correct particles with them.
+      switch(Math.floor(Math.random() * 4)) {
+        case 0:
+          nounOne = `${Articles.articlize(nounOne)}`;
+          nounTwo = `${Articles.articlize(nounTwo)}`;
+        break;
+        case 1:
+          nounOne = `${RiTa.pluralize(nounOne)}`;
+          nounTwo = `${Articles.articlize(nounTwo)}`;
+        break;
+        case 2:
+          nounOne = `${Articles.articlize(nounOne)}`;
+          nounTwo = `${RiTa.pluralize(nounTwo)}`;
+        break;
+        case 3:
+          nounOne = `${RiTa.pluralize(nounOne)}`;
+          nounTwo = `${RiTa.pluralize(nounTwo)}`;
+        break;
+        default:
+        console.log('Whoops.')
+      }
       let newMetaphor = new Metaphor(`
         ${this.firstConcept}
         ${templateObj.template

@@ -6,9 +6,12 @@
 /out-tsc
 
 # dependencies
-/node_modules
+/node_modules/*
 /bower_components/
 package-lock.json
+
+# manually un-ignore articles
+!/node_modules/articles
 
 # API Keys
 /src/app/api-keys.ts
