@@ -51,3 +51,42 @@ h2 {
     font-size: 12px;
   }
 }
+
+
+.sort-container {
+  height: 30px;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 40px;
+
+  a {
+    cursor: pointer;
+  }
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 80px;
+
+  .previous, .next {
+    width: 20%;
+    & > span {
+      cursor: pointer;
+    }
+  }
+  .next {
+    text-align: right;
+  }
+
+  .pages {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+
+    & > span {
+      cursor: pointer;
+      margin: 0 20px;
+    }
+  }
+}
