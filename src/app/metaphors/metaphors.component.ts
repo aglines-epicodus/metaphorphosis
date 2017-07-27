@@ -52,7 +52,9 @@ export class MetaphorsComponent implements OnInit {
   makeMetaphor() {
     this.datamuseService.getDatamuseResponse(this.currentConcept);
 
+    console.log(this.currentConcept);
     this.datamuseService.getNouns(this.currentConcept).subscribe(response => {
+      console.log(response.json());
       let nounOne: string = RiTa.singularize(response.json()[Math.floor(Math.random() * response.json().length)].word);
       let nounTwo: string = RiTa.singularize(response.json()[Math.floor(Math.random() * response.json().length)].word);
       while (nounOne === nounTwo) {
@@ -153,7 +155,8 @@ export class MetaphorsComponent implements OnInit {
 
     this.currentMetaphors = [];
     this.currentMetaphors.push(metaphor);
-    this.currentConcept = metaphor.concepts[Math.floor(Math.random() * metaphor.concepts.length)];
+    let currentConceptTokens = RiTa.tokenize(metaphor.concepts[Math.floor(Math.random() * metaphor.concepts.length)]);
+    this.currentConcept = RiTa.singularize(currentConceptTokens[currentConceptTokens.length - 1]);
     this.makeMetaphor();
 
   }
