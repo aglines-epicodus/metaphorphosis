@@ -60,26 +60,21 @@ export class MetaphorsComponent implements OnInit {
       //returns an object with two keys, a string to be used as a template and a number of concepts necessary to fill the template:
       let templateObj = this.madLibService.buildMadLib();
 
-      console.log(Articles.articlize('unanticipated result'));
       //governs rolling singular and plural forms of concepts and using correct particles with them.
       switch(Math.floor(Math.random() * 4)) {
         case 0:
-          console.log('no plurals');
-          nounOne = `a ${nounOne}`;
-          nounTwo = `a ${nounTwo}`;
+          nounOne = `${Articles.articlize(nounOne)}`;
+          nounTwo = `${Articles.articlize(nounTwo)}`;
         break;
         case 1:
-          console.log('first noun plural');
           nounOne = `${RiTa.pluralize(nounOne)}`;
-          nounTwo = `a ${nounTwo}`;
+          nounTwo = `${Articles.articlize(nounTwo)}`;
         break;
         case 2:
-          console.log('second noun plural');
-          nounOne = `a ${nounOne}`;
+          nounOne = `${Articles.articlize(nounOne)}`;
           nounTwo = `${RiTa.pluralize(nounTwo)}`;
         break;
         case 3:
-          console.log('both nouns plural');
           nounOne = `${RiTa.pluralize(nounOne)}`;
           nounTwo = `${RiTa.pluralize(nounTwo)}`;
         break;
