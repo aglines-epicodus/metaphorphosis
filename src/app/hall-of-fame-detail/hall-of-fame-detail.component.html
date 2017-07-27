@@ -1,5 +1,4 @@
 <div *ngIf="dataSet" id="content">
-
   <div *ngFor="let item of (dataSet | async)?.data">
     <div *ngFor="let subItem of item.sessions">
       <p class="item-container"><span [class]="determineHighlight(subItem, 'a')">{{subItem.a.metaphor}}</span><span [class]="determineHighlight(subItem, 'b')">{{subItem.b.metaphor}}</span></p>

@@ -1,5 +1,6 @@
 <div *ngIf="list">
+  <h2>Hall Of Fame</h2>
   <div *ngFor="let item of list | async | popular">
-    <span class="metaphor"><span [class]="determineClicked(item)" (click)="item.counter = item.counter + 1; saveUpdate(item);"></span><span class="counter">{{item.counter}}</span>{{item.metaphor}} <span (click)="findDetail(item.refId)">&rarr;</span></span>
+    <span class="metaphor"><span [class]="determineClicked(item)" (click)="item.counter = item.counter + 1; saveUpdate(item);"></span><span class="counter">{{item.counter}}</span><span class="metaphor-title" (click)="findDetail(item.refId)">{{item.metaphor}} &rarr;</span></span>
   </div>
 </div>
