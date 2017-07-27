@@ -138,7 +138,7 @@ export class MetaphorsComponent implements OnInit {
         nounOne = nounsWithNumber[0];
         nounTwo = nounsWithNumber[1];
 
-        this.setMetaphor(nounOne.word, nounTwo.word);
+        this.setMetaphor(nounOne, nounTwo);
       });
     } else {
       this.datamuseService.getNouns(this.currentConcept).subscribe(response => {
