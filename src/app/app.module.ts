@@ -7,12 +7,14 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { MetaphorsComponent } from './metaphors/metaphors.component';
 import { AddConceptComponent } from './add-concept/add-concept.component';
 
+import { AuthService } from './services/auth.service';
 import { DatamuseService } from './services/datamuse.service';
 import { MadLibService } from './services/mad-lib.service';
 import { ConceptService } from './services/concept.service';
@@ -53,9 +55,10 @@ export const firebaseConfig = {
     HttpModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireAuthModule
   ],
-  providers: [DatamuseService, ConceptService, SessionService, HallOfFameService, DisplayListService, MadLibService],
+  providers: [DatamuseService, ConceptService, SessionService, HallOfFameService, DisplayListService, MadLibService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
