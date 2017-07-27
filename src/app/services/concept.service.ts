@@ -23,6 +23,10 @@ export class ConceptService {
     this.concepts.push(concept);
   }
 
+  updateConcept(concept) {
+    this.getConceptById(concept.$key).set(concept);
+  }
+
   activateConcept(concepts, id) {
 
     if (concepts.length === this.exhaustedConcepts.length) {
@@ -42,5 +46,13 @@ export class ConceptService {
 
   exhaustConcept(concept) {
     this.exhaustedConcepts.push(concept);
+  }
+
+  getConceptById(key) {
+    return this.database.object('concepts/' + key);
+  }
+
+  removeConcept(key) {
+    this.getConceptById(key).remove();
   }
 }
