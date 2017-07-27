@@ -14,6 +14,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { MetaphorsComponent } from './metaphors/metaphors.component';
 import { AddConceptComponent } from './add-concept/add-concept.component';
 
+import { AuthGuardService } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { DatamuseService } from './services/datamuse.service';
 import { MadLibService } from './services/mad-lib.service';
@@ -58,7 +59,7 @@ export const firebaseConfig = {
     ReactiveFormsModule,
     AngularFireAuthModule
   ],
-  providers: [DatamuseService, ConceptService, SessionService, HallOfFameService, DisplayListService, MadLibService, AuthService],
+  providers: [DatamuseService, ConceptService, SessionService, HallOfFameService, DisplayListService, MadLibService, AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
