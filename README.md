@@ -157,8 +157,7 @@ For feedback or support file an issue in the repository.
 * Angular4
 * [Angular CLI](https://github.com/angular/angular-cli) version 1.2.0.
 * Datamuse API
-* Markov
-* RiTa library (Version x.xx; Howe 2015)
+* RiTa library (Version 1.2.12; Howe 2015)
 
 ### License
 

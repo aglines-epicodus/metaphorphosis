@@ -9,6 +9,10 @@ import { DisplayListService } from '../services/display-list.service';
 })
 export class HallOfFameComponent implements OnInit {
   list: any;
+  filter: string = 'popular';
+  page: number = 1;
+  listLength: number;
+  pages: number[] = [];
 
   constructor(private hallOfFameService: HallOfFameService, private displayListService: DisplayListService) {
 
@@ -16,6 +20,36 @@ export class HallOfFameComponent implements OnInit {
 
   ngOnInit() {
     this.list = this.displayListService.getList();
+    this.list.subscribe((list) => {
+      this.listLength = list.length;
+      for (var i = 0; i < Math.ceil(this.listLength / 20); i++) {
+        this.pages.push(i);
+      }
+    });
+  }
+
+  setFilterType(type: string) {
+    this.filter = type;
+  }
+
+  showNext() {
+    if (!this.listLength) {
+      return true;
+    } else {
+      if (this.page >= Math.ceil(this.listLength / 20)) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  }
+
+  showPrevious() {
+    return this.page !== 1;
+  }
+
+  setPage(page) {
+    this.page = page;
   }
 
   determineClicked(item) {
