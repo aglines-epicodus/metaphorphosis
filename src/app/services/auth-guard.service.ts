@@ -23,7 +23,13 @@ export class AuthGuardService implements CanActivate {
                       this.router.navigate(['']);
                       return false;
                   } else {
-                    return true;
+                    if (this.auth.isAdmin) {
+                      return true;
+                    } else {
+                      alert("You aren't an admin!");
+                      this.router.navigate(['']);
+                      return false;
+                    }
                   }
                 });
   }
