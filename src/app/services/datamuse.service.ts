@@ -9,7 +9,7 @@ export class DatamuseService {
 
 
   getNouns(noun: string) {
-    //Rolls whether to use rel_trg or ml
+    //Rolls whether to use rel_trg. Use holo or hypernyms optionally?
     if (Math.random() > .5) {
       return this.http.get(`http://api.datamuse.com/words?rel_trg=${noun}&max=20`);
     } else {
@@ -18,7 +18,7 @@ export class DatamuseService {
   }
 
   getAdjFor(noun: string) {
-    return this.http.get(`http://api.datamuse.com/words?rel_jjb=${noun}&max=25`);
+    return this.http.get(`http://api.datamuse.com/words?rel_jjb=${noun}&max=25&md=p`);
   }
 
   getDatamuseResponse(selectedWord: string) {

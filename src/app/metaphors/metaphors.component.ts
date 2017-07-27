@@ -55,39 +55,47 @@ export class MetaphorsComponent implements OnInit {
     console.log(this.currentConcept);
     this.datamuseService.getNouns(this.currentConcept).subscribe(response => {
       console.log(response.json());
-      let nounOne: string = RiTa.singularize(response.json()[Math.floor(Math.random() * response.json().length)].word);
-      let nounTwo: string = RiTa.singularize(response.json()[Math.floor(Math.random() * response.json().length)].word);
+      let nounOne = response.json()[Math.floor(Math.random() * response.json().length)];
+      let nounTwo = response.json()[Math.floor(Math.random() * response.json().length)];
       let loopCounter = 0;
-      while (nounOne === nounTwo && loopCounter < 100) {
-        nounTwo = response.json()[Math.floor(Math.random() * response.json().length)].word;
+      while (nounOne.word === nounTwo.word
+            && !nounOne.tags.includes('n')
+            && !nounTwo.tags.includes('n')
+            && loopCounter < 1000) {
+        nounTwo = response.json()[Math.floor(Math.random() * response.json().length)];
+        nounOne = response.json()[Math.floor(Math.random() * response.json().length)];
         loopCounter ++;
       }
+      //Once we've set the word objects, singularize .word manually.
+      nounOne.word = RiTa.singularize(nounOne.word);
+      nounTwo.word = RiTa.singularize(nounTwo.word);
+      console.log(nounOne.word);
+      console.log(nounTwo.word);
       //returns an object with two keys, a string to be used as a template and a number of concepts necessary to fill the template:
       let templateObj = this.madLibService.buildMadLib();
 
       //Assign adjectives to nounOne some of the time. NOTE: adjectives are based on currentConcept, not nounOne
       if (Math.random() > .5) {
         this.datamuseService.getAdjFor(this.currentConcept).subscribe(response => {
-          console.log(this.currentConcept);
-          nounOne = `${response.json()[Math.floor(Math.random() * response.json().length)].word} ${nounOne}`
+          nounOne.word = `${response.json()[Math.floor(Math.random() * response.json().length)].word} ${nounOne.word}`
 
           //governs rolling singular and plural forms of concepts and using correct particles with them.
           switch(Math.floor(Math.random() * 4)) {
             case 0:
-              nounOne = `${Articles.articlize(nounOne)}`;
-              nounTwo = `${Articles.articlize(nounTwo)}`;
+              nounOne.word = `${Articles.articlize(nounOne.word)}`;
+              nounTwo.word = `${Articles.articlize(nounTwo.word)}`;
             break;
             case 1:
-              nounOne = `${RiTa.pluralize(nounOne)}`;
-              nounTwo = `${Articles.articlize(nounTwo)}`;
+              nounOne.word = `${RiTa.pluralize(nounOne.word)}`;
+              nounTwo.word = `${Articles.articlize(nounTwo.word)}`;
             break;
             case 2:
-              nounOne = `${Articles.articlize(nounOne)}`;
-              nounTwo = `${RiTa.pluralize(nounTwo)}`;
+              nounOne.word = `${Articles.articlize(nounOne.word)}`;
+              nounTwo.word = `${RiTa.pluralize(nounTwo.word)}`;
             break;
             case 3:
-              nounOne = `${RiTa.pluralize(nounOne)}`;
-              nounTwo = `${RiTa.pluralize(nounTwo)}`;
+              nounOne.word = `${RiTa.pluralize(nounOne.word)}`;
+              nounTwo.word = `${RiTa.pluralize(nounTwo.word)}`;
             break;
             default:
             console.log('Whoops.')
@@ -96,30 +104,30 @@ export class MetaphorsComponent implements OnInit {
           let newMetaphor = new Metaphor(`
             ${this.firstConcept}
             ${templateObj.template
-              .replace('CONCEPT2', nounOne)
-              .replace('CONCEPT3', nounTwo)}`); //if no third concept, this fails quietly and without error.
-          newMetaphor.concepts.push(nounOne);
-          newMetaphor.concepts.push(nounTwo);
+              .replace('CONCEPT2', nounOne.word)
+              .replace('CONCEPT3', nounTwo.word)}`); //if no third concept, this fails quietly and without error.
+          newMetaphor.concepts.push(nounOne.word);
+          newMetaphor.concepts.push(nounTwo.word);
           this.currentMetaphors.push(newMetaphor);
         });
       } else {
         //governs rolling singular and plural forms of concepts and using correct particles with them.
         switch(Math.floor(Math.random() * 4)) {
           case 0:
-            nounOne = `${Articles.articlize(nounOne)}`;
-            nounTwo = `${Articles.articlize(nounTwo)}`;
+            nounOne.word = `${Articles.articlize(nounOne.word)}`;
+            nounTwo.word = `${Articles.articlize(nounTwo.word)}`;
           break;
           case 1:
-            nounOne = `${RiTa.pluralize(nounOne)}`;
-            nounTwo = `${Articles.articlize(nounTwo)}`;
+            nounOne.word = `${RiTa.pluralize(nounOne.word)}`;
+            nounTwo.word = `${Articles.articlize(nounTwo.word)}`;
           break;
           case 2:
-            nounOne = `${Articles.articlize(nounOne)}`;
-            nounTwo = `${RiTa.pluralize(nounTwo)}`;
+            nounOne.word = `${Articles.articlize(nounOne.word)}`;
+            nounTwo.word = `${RiTa.pluralize(nounTwo.word)}`;
           break;
           case 3:
-            nounOne = `${RiTa.pluralize(nounOne)}`;
-            nounTwo = `${RiTa.pluralize(nounTwo)}`;
+            nounOne.word = `${RiTa.pluralize(nounOne.word)}`;
+            nounTwo.word = `${RiTa.pluralize(nounTwo.word)}`;
           break;
           default:
           console.log('Whoops.')
@@ -128,10 +136,10 @@ export class MetaphorsComponent implements OnInit {
         let newMetaphor = new Metaphor(`
           ${this.firstConcept}
           ${templateObj.template
-            .replace('CONCEPT2', nounOne)
-            .replace('CONCEPT3', nounTwo)}`); //if no third concept, this fails quietly and without error.
-        newMetaphor.concepts.push(nounOne);
-        newMetaphor.concepts.push(nounTwo);
+            .replace('CONCEPT2', nounOne.word)
+            .replace('CONCEPT3', nounTwo.word)}`); //if no third concept, this fails quietly and without error.
+        newMetaphor.concepts.push(nounOne.word);
+        newMetaphor.concepts.push(nounTwo.word);
         this.currentMetaphors.push(newMetaphor);
       }
     });
