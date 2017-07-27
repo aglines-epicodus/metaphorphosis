@@ -12,21 +12,12 @@ export class DatamuseService {
     return this.http.get(`http://api.datamuse.com/words?rel_trg=${noun}&max=20`);
   }
 
-  getAdjRelatedToNouns(noun: string) {
+  getAdjFor(noun: string) {
     return this.http.get(`http://api.datamuse.com/words?rel_jjb=${noun}&max=25`);
   }
 
-  getDatamuseResponse() {
-
-// get random seed
-// on that seed, only check certain datamuse results
-// get slightly-non-random result
-  // we don;t want a certain percentage of the word contained in it
-// construct
-
+  getDatamuseResponse(selectedWord: string) {
     var seeds = ["animal", "art", "beauty", "game", "love", "meaning", "politics", "work", "peace", "power"];
-
-    var selectedWord = "politics";
 
     var meansLike = this.http.get("http://api.datamuse.com/words?ml=" + selectedWord + "&max=10").subscribe((result) => {
       for (var i=0; i<result.json().length; i++) {
@@ -96,7 +87,4 @@ export class DatamuseService {
       }
     });
   }
-  // getNounPhrase() {
-  //   //Possibly write this later
-  // }
 }

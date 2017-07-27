@@ -50,7 +50,8 @@ export class MetaphorsComponent implements OnInit {
   }
 
   makeMetaphor() {
-    // this.datamuseService.getAdjRelatedToNouns(this.currentConcept).subscribe(response => {
+    this.datamuseService.getDatamuseResponse(this.currentConcept);
+
     this.datamuseService.getNouns(this.currentConcept).subscribe(response => {
       let nounOne: string = RiTa.singularize(response.json()[Math.floor(Math.random() * response.json().length)].word);
       let nounTwo: string = RiTa.singularize(response.json()[Math.floor(Math.random() * response.json().length)].word);
@@ -81,15 +82,29 @@ export class MetaphorsComponent implements OnInit {
         default:
         console.log('Whoops.')
       }
-      let newMetaphor = new Metaphor(`
-        ${this.firstConcept}
-        ${templateObj.template
-        .replace('CONCEPT2', nounOne)
-        .replace('CONCEPT3', nounTwo)}`); //if no third concept, this fails quietly and without error.
-      // let newMetaphor = new Metaphor(`${this.firstConcept} is more than ${nounOne} with ${nounTwo}`);
-      newMetaphor.concepts.push(nounOne);
-      newMetaphor.concepts.push(nounTwo);
-      this.currentMetaphors.push(newMetaphor);
+      //Assign adjectives to nounOne some of the time. NOTE: adjectives are based on currentConcept, not nounOne
+      if (Math.random() > .5) {
+        this.datamuseService.getAdjFor(this.currentConcept).subscribe(response => {
+          nounOne = `${response.json()[Math.floor(Math.random() * response.json().length)].word} ${nounOne}`
+          let newMetaphor = new Metaphor(`
+            ${this.firstConcept}
+            ${templateObj.template
+              .replace('CONCEPT2', nounOne)
+              .replace('CONCEPT3', nounTwo)}`); //if no third concept, this fails quietly and without error.
+          newMetaphor.concepts.push(nounOne);
+          newMetaphor.concepts.push(nounTwo);
+          this.currentMetaphors.push(newMetaphor);
+        });
+      } else {
+        let newMetaphor = new Metaphor(`
+          ${this.firstConcept}
+          ${templateObj.template
+            .replace('CONCEPT2', nounOne)
+            .replace('CONCEPT3', nounTwo)}`); //if no third concept, this fails quietly and without error.
+        newMetaphor.concepts.push(nounOne);
+        newMetaphor.concepts.push(nounTwo);
+        this.currentMetaphors.push(newMetaphor);
+      }
     });
   }
 
