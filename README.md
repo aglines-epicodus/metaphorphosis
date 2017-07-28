@@ -46,13 +46,9 @@ A user can also click on the arrow next to a statement to see the journey a user
 * User will be able to choose between the two metaphors presented as to which one is preferable to the user
   * Selection clicked
   * The two current strings, as well as the one selected stored to database in session generated from page load
-* Once a threshold has been reached for a metaphor being selected repeatedly, the string will be stored to a "hall of fame" and replaced with a new metaphor based on a new concept
+* Once a threshold has been reached for a metaphor being selected repeatedly, the string will be stored to an "anthology" and replaced with a new metaphor based on a new concept
   * Metaphor has been selected as the preferred choice X times
-  * Stored to hall of fame "table" to be displayed on separate view
-
-| Behavior | Input | Output |
-| - | - | - |
-| blah | blah | blah |
+  * Stored to anthology "table" to be displayed on separate view
 
 ## Set up / Installation
 
