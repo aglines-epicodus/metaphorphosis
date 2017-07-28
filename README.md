@@ -9,11 +9,18 @@ Seeded with a handful of complex, ambiguous, polysemic, or hard-to-define concep
 
 <img src="src/assets/img/screenshots/metaphor.png" alt="metaphor page">
 
-If a statement is chosen enough times (in a single session) it will be included in the "Hall of Fame" where it may be seen and upvoted by other users.
+If a statement is chosen enough times (in a single session) it will be included in the "Anthology," a sort of hall of fame, where it may be seen and upvoted by other users.
 
 <img src="src/assets/img/screenshots/anthology.png" alt="metaphor page">
 <img src="https://github.com/aglines-epicodus/metaphorphosis/blob/master/src/assets/img/screenshots/anthology.png
 " alt="anthology page">
+
+A user can also click on the arrow next to a statement to see the journey a user took through their session, revealing something of the logic that morphed the statements toward the concepts they arrived at.
+
+<img src="https://github.com/aglines-epicodus/metaphorphosis/blob/master/src/assets/img/screenshots/tree.png
+" alt="tree page">
+
+
 
 
 
