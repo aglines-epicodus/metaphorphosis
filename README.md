@@ -17,8 +17,7 @@ If a statement is chosen enough times (in a single session) it will be included 
 
 A user can also click on the arrow next to a statement to see the journey a user took through their session, revealing something of the logic that morphed the statements toward the concepts they arrived at.
 
-<img src="https://github.com/aglines-epicodus/metaphorphosis/blob/master/src/assets/img/screenshots/tree.png
-" alt="tree page">
+<img src="src/assets/img/screenshots/tree.png" alt="tree page">
 
 
 
