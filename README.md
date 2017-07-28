@@ -20,12 +20,6 @@ A user can also click on the arrow next to a statement to see the journey a user
 <img src="src/assets/img/screenshots/tree.png" alt="tree page">
 
 
-
-
-
-## Screenshots
-<img src="Content/img/screenshots/landing.png" alt="landing">
-
 ## Specifications
 
 * The app will randomly choose from a set of predetermined concepts when building statements / metaphors.
