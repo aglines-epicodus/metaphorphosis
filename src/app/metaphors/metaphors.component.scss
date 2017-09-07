@@ -17,7 +17,7 @@ p {
     top: 20%;
 
     @include tablet-bp {
-      top: 30%;
+      top: 20%;
       font-size: 36px;
     }
   }
@@ -28,7 +28,7 @@ p {
     @include tablet-bp {
       left: auto;
       right: 20px;
-      bottom: 30%;
+      bottom: 20%;
       font-size: 36px;
     }
   }
